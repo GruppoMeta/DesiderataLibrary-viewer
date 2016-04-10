@@ -1,0 +1,236 @@
+header
+    nav(class="navbar navbar-default")
+        span(style="color:#fff;position:absolute;top:15px;left:250px"  class="yesDisplayPc noDisplayTel noDisplayTablet")
+            |{{user.loginId}}
+        div(class="navbar-header-center navbar-header")
+            button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#headerDesiderata")
+                span(class="sr-only")
+                    |Toggle navigation
+                span(class="icon-bar")
+                span(class="icon-bar")
+                span(class="icon-bar")
+            div(class="navbar-brand noDisplayPc yesDisplayTel yesDisplayTablet")
+                div(class="backContainer" ng-click="goBack()")
+                    i(class="fa fa-chevron-left" )
+                div(class="titleContainer")
+                    | {{$root.bookTitle}}
+         div(class="fluid collapse navbar-collapse" id="headerDesiderata")
+            ul(class="nav navbar-nav")
+                li
+                    div(class="username yesDisplayTablet yesDisplayTel" style="float:left;color: #fff;width:100%;padding-left:10px; display: none")
+                        |{{user.loginId}}
+                li
+                    div(class="cartNavbar" ui-sref="cart" ng-show="emptyCart == false")
+                        i(class="fa fa-2x fa-shopping-cart")
+                li
+                    div(class="title")
+                        a(ui-sref="help" class="elementInCollapseNavbar" class="elementInCollapseNavbar") Assistenza
+                li
+                    div(class="title")
+                        a(ui-sref="profile" class="elementInCollapseNavbar") Profilo
+                li(id="categoryInMenu")
+                    div(class="title")
+                        a(ui-sref="collection" class="elementInCollapseNavbar") Catalogo generale
+                li
+                    div(class="title")
+                        a(ui-sref="dashboard" class="elementInCollapseNavbar") La mia libreria
+                li
+                    div(class="title")
+                        a(ui-sref="logout" class="elementInCollapseNavbar") Esci
+    div
+       div(class="logo noDisplayTel noDisplayTablet")
+           a(ui-sref="dashboard"): img(src="img/desiderata-library-logo.png")
+div(ng-class="{'sideHide': sideMenu == false, 'sideShow': sideMenu == true}" class="'col-md-12 noPad" popover-close exclude-class="exclude")
+   div(class="options2" ng-class="{'optionsOpen': sideMenu == true}")
+       div(class="col-md-12 col-xs-12 col-sm-12" id="mobileContTitle" style="margin-top:-40px")
+           div(class="col-md-2 left col-xs-2 col-sm-2")
+                   div(class="col-md-12" ng-show=" {{bookInfo.prevId}} != 0")
+                       a(title="Indietro" style="float:right"): img(ng-src="img/arrow-left.png" class="arr" ng-click="bookGoPrev()")
+                   div(class="col-md-12" ng-show=" {{bookInfo.prevId}} == 0")
+                       a(title="Indietro" style="float:right"): img(ng-src="img/arrow-left-off.png" class="arr" disabled="disabled")
+           div(id="containerTitleAndParagraph" class="col-xs-6 col-sm-6" ng-class="{'leftWhenOpenedSidebar': sideMenu == true }")
+               div(class="title noDisplayTel noDisplayTablet" id="titleBook" style="z-index: 1000") {{$root.bookTitle}}
+               div(class="title" id="titleParagraph" style="z-index: 1000; margin-bottom: 5px;") {{bookInfo.title}}
+               div(class="title" id="subtitle" style="z-index: 1000;font-size: 1.5rem;position: absolute;bottom: -12px;width: 50%;left: 50%;margin-left: -25%;font-style: italic") {{bookInfo.subtitle}}
+           div(class="col-md-1 col-md-offset-8 right col-xs-2 col-xs-offset-6 col-sm-2 col-sm-offset-8" ng-class="{'leftArrowRightWhenOpenedSidebar': sideMenu == true }")
+               div(class="col-md-12" ng-show=" {{bookInfo.nextId}} != 0")
+                   a(title="Avanti" style="float:left"): img(src="img/arrow-right.png" class="arr" ng-click="bookGoNext()")
+               div(class="col-md-12" ng-show=" {{bookInfo.nextId}} == 0")
+                   a(title="Avanti" style="float:left"): img(src="img/arrow-right-off.png" class="arr")
+           a(title="Preferito"): img(ng-src="img/{{fav == true && 'bookmark-select.png' || 'bookmark-def.png'}}" ng-click="toggleFav()" class="cursorRightIcon rightBookmark" ng-class="{'bookmarkWhenOpenSidebar' : sideMenu == true }" style="position: absolute;")
+           script(type="text/ng-template" id="tagPopover.html")
+               div(class="form-group exclude")
+                   div(class="row")
+                       label(for="Parole chiave" style="font-weight:400") Parole chiave
+                   div(class="row exclude")
+                       ui-select(theme="select2" multiple ng-model="TK.keywordArray" tagging="addNewKeyword" on-select="selectKeyWord($item)" tagging-label="(nuovo)")
+                           ui-select-match(placeholder="Select keyword") {{$item.text}}
+                           ui-select-choices(refresh="getKeywords($select.search)" refresh-delay="0" repeat="elem in availableKeywords | filter:$select.search") {{elem.text}}
+                   div(class="row")
+                       label(for="Taggatura ontologica" style="font-weight:400") Taggatura ontologica
+                   div(class="row exclude")
+                       ui-select(class="exclude" theme="select2" multiple ng-model="TK.tagsArray" )
+                           ui-select-match(class="exclude" placeholder="Select tag") {{$item.text}}
+                           ui-select-choices(refresh="getTags($select.search)" refresh-delay="0" repeat="elem in availableTags | filter:$select.search") {{elem.text}}
+                   div(class="row")
+                       button(class="confirm btn btn-default" ng-click="saveTags()" ) Conferma
+                       button(class="cancel btn btn-default" ng-click="clearTags()" ) Annulla
+   div(class="page")
+       div(id="bookScrolling" class="col-md-12 col-xs-12 col-sm-12" ng-class="{'optionsOpen': sideMenu == true}" )
+            div(class="col-md-2 right comments-container col-sm-2 col-xs-1")
+            book-annotator(book-list="bookInfoText" id="commentable-area" class="col-md-8 col-xs-10 col-sm-8" )
+            div(class="col-md-2 sidebar col-xs-1 col-sm-2")
+               ul(ng-class="{'none': sideMenu == false}")
+                   li(ng-class="{'move': sideMenu == true }" style="height: 35px;")
+                     div( id="buttonPopoverTag" popover-container="closePopover()" style="position: relative; float: right;" class="noDisplayTel noDisplayTablet")
+                          a(class="keywordsInSidebar" title="Tags"): img(ng-src="img/tag-def.png" ng-click="toggleTag()" popover-template="'tagPopover.html'" class="cursorRightIcon" style="height: 35px;width: 45px;margin-right: -2px; margin-bottom: 5px;" popover-placement="left" popover-is-open="toggleTaggingPopover" popover-elem)
+                   li(class="noDisplayTel" ng-class="{'move': sideMenu == true }" ng-show="bookInfo.geo && bookInfo.geo != ''")
+                       div(  popover-container="closePopoverMap()" id="popoverMap" style="position: relative; margin-top: 30px;"  class="noDisplayTel yesDisplayTablet")
+                          a(title="Mappa"): img(ng-src="img/geoloc-menu.png" ng-show="areThereMarkers" ng-click="toggleTagMap()" popover-template="'tagPopoverMap.html'" class="cursorRightIcon" popover-placement="left" popover-is-open="toggleTaggingPopoverMap")
+                   li(class="yesDisplayTel" ng-class="{'move': sideMenu == true }" ng-show="bookInfo.geo && bookInfo.geo != ''" style="display: none;")
+                       div(  popover-container="closePopoverMap()" id="popoverMap" style="position: relative; margin-top: 30px;"  class="noDisplayTel yesDisplayTablet")
+                          a(title="Mappa"): img(ng-src="img/geoloc-menu.png" ng-show="areThereMarkers" ng-click="toggleTagMapMobile()" popover-template="'tagPopoverMap.html'" class="cursorRightIcon" popover-placement="left" popover-is-open="toggleTaggingPopoverMap")
+                   li(ng-class="{'move': sideMenu == true }")
+                       a(title="Indice"): img(src="img/indice-menu.png" ng-click="toogleMenu('book.index')" ng-class="{active : currentState == 'book.index'}")
+                   li(ng-class="{'move': sideMenu == true }" )
+                       a(title="Search"): img(src="img/lente.png" popover-template="'search.html'" popover-placement="left" ng-click="closeSidebar()" popover-is-open="toggleSearchPopover" popover-elem)
+                   li(ng-class="{'move': sideMenu == true }")
+                       a(title="Desiderata"): img(src="img/desiderata-menu.png" ng-click="toogleMenu('book.desiderata')" ng-class="{active : currentState == 'book.desiderata'}")
+                   li(ng-class="{'move': sideMenu == true }")
+                       a(title="Testi simili"): img(src="img/simili-menu.png" ng-click="toogleMenu('book.similar')" ng-class="{active : currentState == 'book.similar'}" )
+                   li(ng-class="{'move': sideMenu == true }")
+                       a(title="Ricerca avanzata"): img(src="img/ricerca_ontologica.png" ng-click="toogleMenu('book.advancedSearch')" ng-class="{active : currentState == 'book.advancedSearch'}" )
+                   li(ng-class="{'move': sideMenu == true }")
+                       a(title="Preferiti"): img(src="img/preferiti-menu.png" ng-click="toogleMenu('book.bookmarks')" ng-class="{active : currentState == 'book.bookmarks'}")
+                   li(ng-class="{'move': sideMenu == true }")
+                       a(title="Tagging"): img(src="img/tag-menu.png" ng-click="toogleMenu('book.tag')" ng-class="{active : currentState == 'book.tag'}")
+                   li(ng-class="{'move': sideMenu == true }")
+                       a(title="Commenti"): img(src="img/commenti-menu.png" ng-click="toogleMenu('book.comments')" ng-class="{active : currentState == 'book.comments'}")
+                   li(ng-class="{'move': sideMenu == true }")
+                       a(title="Condividi"): img(src="img/condivisione-menu.png" popover-template="'share.html'" popover-placement="left" popover-is-open="toggleSharePopover" ng-click="loadSharingButtons()" popover-elem)
+                   script(type="text/ng-template" id="share.html")
+                       div(class="row offlineError exclude" ng-show="readingOffline" style="margin: 0px !important; color: black; padding-left: 5px; padding-right: 5px;")
+                          |Questa funzionalità è disponibile solo in modalità online.
+                       div(class="row exclude" ng-show="!readingOffline")
+                           div(class="col-xs-2")
+                                div(class="sharingButton" ng-click="openLink( sharingButtons.facebook )")
+                                    img(src="img/facebook.png")
+                           div(class="col-xs-2")
+                                div(class="sharingButton" ng-click="openLink( sharingButtons.twitter )")
+                                    img(src="img/twitter.png")
+                           div(class="col-xs-2")
+                                div(class="sharingButton" ng-click="openLink( sharingButtons.linkedin )")
+                                    img(src="img/linkedin.png")
+                           div(class="col-xs-2")
+                                div(class="sharingButton" ng-click="openLink( sharingButtons.pinterest )")
+                                    img(src="img/pinterest.png")
+                           div(class="col-xs-2")
+                                div(class="sharingButton" ng-click="openLink( sharingButtons.mail )")
+                                    img(src="img/mail.png")
+                   script(type="text/ng-template" id="search.html")
+                        div(class="row exclude" style="padding: 0 10px")
+                            div(class="inner-addon right-addon")
+                                i(class="glyphicon glyphicon-remove" ng-click="clearSearch() " style="cursor:pointer;pointer-events:auto")
+                                input(type="text" class="form-control" placeholder="Parola da ricercare" ng-model="$parent.textToSearch" ng-change="searchInText()" ng-click="closeSidebar()")
+                                button( class="confirm btn btn-default" ng-click="searchInBook()") Cerca nel libro
+                    script(type="text/ng-template" id="tagPopoverMap.html")
+                      div(class="mapSidebar" ng-if="informationsMarker")
+                          div(id="containerInformationsMarker")
+                              div(id="singleMarker" ng-repeat="marker in informationsMarker" ng-class="{active: marker.active == true}")
+                                  div(id="titleMarker" ui-sref="book({idBook:{{marker.idBook}}, idPar:{{marker.idPar}}})")
+                                      div
+                                        |{{marker.title}}
+                                      i(style="color:green; margin-top: -17px; float:right" ng-show="marker.inLibrary" class="fa fa-check-square")
+                                      i(style="color:#FFBF00; margin-top: -17px; float:right" ng-show="!marker.inLibrary" class="fa fa-usd ng-hide")
+                                  div(id="subtitleMarker")
+                                      |{{marker.subtitle}}
+                                  div(id="previewMarker")
+                                      |{{marker.preview}}
+                                  div(id="readMarker")
+                                      div(class="dropdown dropdownSimilar" style="float: right !important; margin-top: -8px !important;")
+                                        button(class="btn btn-default dropdown-toggle buttonSimilar" id="buttonSimilar{{$index}}" type="button" data-toggle="dropdown" ng-click="openDropdown($index)")
+                                            |Aggiungi a desiderata
+                                            span(class="caret")
+                                        ul(class="dropdown-menu" id="{{$index}}" style="margin-left: -40px")
+                                            li(ng-repeat="desiderata in desiderataList")
+                                                a(class="mapDropdown" ng-click="openConfirmModal(desiderata.title, desiderata.id, marker.idBook, marker.idPar )")
+                                                    |{{desiderata.title}}
+                                      //a(ui-sref="book({idBook:{{marker.idBook}}, idPar:{{marker.idPar}}})")
+                                        //|Vai a
+                                      a(class='first' style="border-right: 1px solid #b12031 !important; padding-right: 5px !important;" ng-click="openReadingModal(marker)")
+                                          |Leggi
+
+                        div(class="googleMap")
+                            ui-gmap-google-map(center='map.center' zoom='map.zoom' options="options" control="map.control" events="map.events")
+                                ui-gmap-markers(models="markers" coords="'coords'" options="'options'" events="'events'" idkey="id")
+                                ui-gmap-window(coords="infoWindow.coords" templateUrl="infoWindow.templateUrl" show="windowOptions.visible" options="infoWindow")
+
+
+div(ng-show="$root.addingText" class="absSidebar")
+    div(class="col-md-12")
+        div(class="row")
+            div(class="col-md-10" style="text-align:left")
+                h4(style="font-size:17")
+                    |Ricerca
+            div(class="col-md-2" style="text-align:right")
+                i(class="fa fa-times" ng-click="closeAbs()" style="cursor: pointer")
+        div(class="row")
+            div(class="inner-addon right-addon col-md-12")
+                i(class="glyphicon glyphicon-search" style="right:15px")
+                input(type="text" class="form-control" placeholder="Search" ng-model="search.searchingText" ng-change="searchTexts()")
+        div(class="row")
+            div(class="col-md-3")
+                h5(style="font-size:17")
+                    |Raffina Ricerca
+                div(class="tagList")
+                    div(class="tagListItem" ng-repeat="obj in $root.chosenArgs") {{obj}}
+                        i(class="fa fa-minus-square" ng-click="dropArgs($index)")
+                //h5(style="font-weight:700")
+                    //|Argomenti
+                div(class="tagList")
+                    div(class="tagListItem" ng-repeat="obj in $root.desiderataArgs" ng-if="obj.number != 0")
+                        i(class="fa fa-plus-square" ng-click="chooseArgs($index)")
+                        div(style="padding-left: 20px;") {{obj.label}} ({{obj.number}})
+            div(class="col-md-9")
+                div(class="col-md-12 bookItem" ng-repeat="obj in $root.desiderataText")
+                    h5(class="bookTitle")
+                        |{{obj.title}}
+                    i(class="fa fa-check-square" style="color:green; margin-top: -25px; float:right" ng-show="{{obj.inLibrary}}")
+                    i(class="fa fa-usd" style="color:#FFBF00; margin-top: -25px; float:right" ng-show="{{!obj.inLibrary}}")
+                    h5(class="bookParagraph")
+                        |{{obj.subtitle}}
+                    p(class="initialContentBook")
+                        span
+                            |{{obj.preview}}
+                    a(ng-click="chooseText($index)" style="cursor:pointer"  class="last-right")
+                        |Aggiungi a desiderata
+                    //a(ng-show="obj.inLibrary" style="cursor:pointer" )
+                        //|Leggi
+                    //a(ng-show="!obj.inLibrary" style="cursor:pointer")
+                        //|Acquista
+                    //a(ng-show="!obj.inLibrary"  style="cursor:pointer" )
+                        //|Sblocca
+                div(class="col-md-10 col-md-offset-1" style="text-align:center")
+                  ul( ng-if='pages != 0' class='pagination' ng-show="$root.desiderataText.length != 0")
+                    li( ng-class="{'disabled' : current == 0}")
+                      a( ng-click='searchItem(current-1)' aria-label="Previous")
+                        span(aria-hidden="true")&laquo;
+                    li( ng-show='current-2 >= 0')
+                      a( ng-click='searchItem(0)' ) 1
+                    li( ng-show='current-2 > 0')
+                      a ..
+                    li( ng-show='current-1 >= 0')
+                      a( ng-click='searchItem(current-1)' ){{current }}
+                    li( class='active')
+                      a {{current + 1 }}
+                    li( ng-show='current+1 <= pages-1' )
+                      a( ng-click='searchItem(current+1)' ) {{current+2}}
+                    li( ng-show='current+2 < pages')
+                      a ..
+                    li( ng-show='pages > current' )
+                      a( ng-click='searchItem(pages)' ) {{pages+1}}
+                    li( ng-class="{'disabled' : current == pages}")
+                      a( ng-click='searchItem(current+1)' aria-label="Next")
+                        span(aria-hidden="true")&raquo;
+div(class="index" ng-class="{'hide': sideMenu == false, 'col-md-2': sideMenu == true, 'noOverflow' : $root.indexTreeOpened == true}")
+ <div ui-view></div>

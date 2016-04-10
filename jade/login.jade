@@ -1,0 +1,48 @@
+nav(class="navbar navbar-default noDisplayTablet")
+   div(class="fluid")
+div
+    div(class="logo noDisplayTablet")
+        img(src="img/desiderata-library-logo.png")
+div(class="row login noDisplayTablet")
+    div(class="loginForm")
+        form(ng-submit="loginSubmit()" novalidate)
+            div(class="loginTitle")
+                |Login
+            div(class="loginError" ng-if="loginError")
+                |Utente e/o password inesistenti. Riprovare.
+            div(class="inner-addon left-addon user")
+                i(class="glyphicon glyphicon-envelope")
+                input(type="text" class="form-control" placeholder="User" ng-model="user" required autofocus)
+            div(class="inner-addon left-addon")
+                i(class="glyphicon glyphicon-lock")
+                input(type="password" class="form-control" placeholder="Password" ng-model="password" required)
+            div(class="containerSubmit")
+                <label id="rememberLogin"><input type="checkbox" style="-webkit-appearance: checkbox">Ricorda login</label>
+            div(class="containerSubmit" id="confirmLogin")
+                a(ui-sref="registration" id="registerNow")
+                    |Registrati ora
+                input(type="submit" id="submit" value="Conferma")
+            div(class="containerSubmit")
+                a(ui-sref="recoverPassword" id="lostPass")
+                    |Hai dimenticato la password?
+div(class="loginContainer noDisplayPc yesDisplayTablet yesDisplayTel")
+    div(class="textContainer col-sm-6 col-xs-10 col-sm-offset-3 col-xs-offset-1")
+        div(class="col-sm-10 col-sm-offset-1 col-xs-12")
+            img(src="img/desiderata-library-logo.png")
+            div(class="errorMessage" ng-if="loginError")
+                i(class="fa fa-exclamation fa-2x")
+                | Nome utente o password sbagliate
+            form(ng-submit="loginSubmit()" novalidate)
+                div(class="inner-addon left-addon user")
+                    i(class="glyphicon glyphicon-envelope")
+                    input(type="text" class="form-control" placeholder="User" ng-model="user" required autofocus)
+                div(class="inner-addon left-addon")
+                    i(class="glyphicon glyphicon-lock")
+                    input(type="password" class="form-control" placeholder="Password" ng-model="password" required)
+                div(class="containerSubmit")
+                    a(ui-sref="recoverPassword" id="lostPass")
+                        |Hai dimenticato la password?
+                div(class="containerSubmit" id="confirmLogin")
+                    input(type="submit" id="submit" value="Entra")
+                button(class="btn btn-group cancel" ui-sref="registration" id="registerNow") Registrati ora
+                

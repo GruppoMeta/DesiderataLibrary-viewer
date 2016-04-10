@@ -1,0 +1,67 @@
+doctype html
+html(ng-app="desiderata")
+    head
+        title Desiderata Library
+        include libs/header
+    body(ng-controller="book")
+        header
+            nav(class="navbar navbar-default")
+                div(class="fluid")
+                    ul(class="nav navbar-nav")
+                        li
+                            div(class="title")
+                                a Libreria
+                        //li
+                        //    div(class="title")
+                        //        a Profilo
+                        li
+                            div(class="title")
+                                a(ui-sref="logout") Esci
+            div
+                div(class="logo")
+                    img(src="img/desiderata-library-logo.png")
+            div(ng-class="{'sideHide': sideMenu == false, 'sideShow': sideMenu == true}" class="'col-md-12 noPad")
+                div(class="options")
+                    div(class="col-md-8 col-md-offset-2")
+                        div(class="col-md-2")
+                            div(class="col-md-12")
+                                a: img(src="img/arrow-left-off.png" class="arr")
+                        div(class="col-md-8")
+                            div(class="title")
+                                | I - Nella Coniglieria
+                        div(class="col-md-2 right")
+                            div(class="col-md-12")
+                                a: img(src="img/arrow-right.png" class="arr")
+                        div(class="col-md-12 favB")
+                            div(class="col-md-2 col-md-offset-10 right")
+                                img(ng-src="img/{{fav == true && 'bookmark-select.png' || 'bookmark-def.png'}}" ng-click="toggleFav()")
+                                img(ng-src="img/tag-def.png" ng-click="tag()")
+                div(class="page")
+                    div(class="col-md-12")
+                        div(class="col-md-2 right")
+                            img(src="img/commento-selezione.png" class="comment")
+                        div(class="col-md-8 text")
+                            div(class="containerVideo")
+                                iframe(src="https://www.youtube.com/embed/L7_5xi64284" frameborder="0" allowfullscreen class="video")
+                            | lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore &nbsp;
+                        div(class="col-md-2 sidebar")
+                            ul
+                                li(ng-class="{'move': sideMenu == true }")
+                                    img(src="img/indice-menu.png" ng-click="toogleMenu()" ng-class="{'active': sideMenu == true }")
+                                li
+                                    img(src="img/desiderata-menu.png")
+                                li
+                                    img(src="img/simili-menu.png")
+                                li
+                                    img(src="img/preferiti-menu.png")
+                                li
+                                    img(src="img/tag-menu.png")
+                                li
+                                    img(src="img/commenti-menu.png")
+                                li
+                                    img(src="img/condivisione-menu.png")
+                                li
+                                    img(src="img/geoloc-menu.png")
+        div(class="index" ng-class="{'hide': sideMenu == false, 'col-md-2': sideMenu == true}")
+            div(class="title") Indice
+            div(id="tree")

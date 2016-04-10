@@ -1,0 +1,3548 @@
+//template
+$red: rgb(177, 32, 49);
+$red2: #D9534F;
+$red3: #B10231;
+$red4: #F56767;
+$redLight: #A94442;
+$white: rgba(255,255,255,0.8);
+$white2: #FAFAFA;
+$white3: #ECECEC;
+$gray: rgb(236,236,236);
+$grey: #ECECFB;
+$grey2: #888888;
+$grey3: #767676;
+$grey4: #CCCCCC;
+$grey5: #777777;
+$grey6: #EEEEEE;
+$grey7: #DDDDDD;
+$grey8: #555555;
+$grey9: #AEAEAE;
+$grey10: #7D7D7D;
+$grey11: #DBDBDB;
+$grey12: #D5D5D5;
+$grey13: #A0A0A0;
+$yellow: #FFF6DB;
+$celestial: #1EB6B6;
+$celestial2: #337AB7;
+$black: #000000;
+$black2: #333333;
+$green: #5CB85C;
+$green2: #80C780;
+$green3: #A3DD86;
+$screen-xs-max: 767px;
+$screen-sm-min: 992px;
+
+@media (max-width: $screen-xs-max){
+    #containerTitleAndParagraph{
+      bottom : 10px !important;
+       width: 50% !important;
+       left: 18%;
+    }
+
+    .comments-container{
+      width: 25px;
+    }
+    #pdfImage{
+      width: 100%;
+      book-annotator{
+        margin-top: 20px !important;
+      }
+    }
+    .noDisplayTel{
+        display: none;
+    }
+    .yesDisplayTel{
+        display: block !important;
+    }
+
+    .angular-google-map-container{
+      height: 100% !important;
+      width: 100% !important;
+    }
+    #mapPage{
+      #containerInformationsMarker{
+        position: absolute;
+        top: 8%;
+        left: 8%;
+        z-index: 1;
+        background-color: white;
+        width: 80%;
+        height: 80%;
+        overflow-y: scroll;
+        border: 5px solid $grey4;
+        padding: 10px;
+        display: none;
+        #singleMarker{
+          float: left;
+          padding-bottom: 10px;
+          border-bottom: 1px solid $grey12;
+          padding-top: 10px;
+          padding-left: 10px;
+          padding-right: 10px;
+          #titleMarker{
+            font-weight: bold;
+            float: left;
+            width: 100%;
+            cursor: pointer;
+            color: $celestial2;
+          }
+          #subtitleMarker{
+            font-weight: 200;
+            float: left;
+            width: 100%;
+          }
+          #previewMarker{
+            max-height: 110px;
+            font-size: 13px;
+            overflow: hidden;
+            text-align: justify;
+            float: left;
+            width: 100%;
+          }
+          #readMarker{
+            float: left;
+            width: 100%;
+            a{
+              float: right;
+              text-decoration: none;
+              color: $red;
+              cursor: pointer;
+              margin-left: 5px;
+              padding-left: 5px;
+              border-left: 1px solid $red;
+              &.first{
+                border: none;
+              }
+            }
+          }
+        }
+        #singleMarker.active{
+          background-color: $grey12;
+        }
+      }
+    }
+
+    .sidebar{
+        height: 100vh;
+        #geotagging{
+            display:none;
+        }
+        .active{
+            border-left: 1px solid $white3;
+        }
+        ul{
+            padding-top: 15px !important;
+            margin-bottom: 0 !important;
+            background-image: none !important;
+            margin-top: 0px !important;
+            border: solid 1px $white3;
+            padding-left: 0px !important;
+            right: 250 !important;
+        }
+    }
+
+    .index{
+        border-left: none !important;
+    }
+
+
+
+    .comments-container{
+        padding: 0px !important;
+        margin-left: 5px;
+        margin-top: 20px !important;
+    }
+
+    .loginContainer{
+        padding-top: 0px !important;
+        #lostpass{
+            font-size : 10px !important;
+        }
+    }
+
+    .recoverContainer{
+        padding-top: 0px !important;
+    }
+}
+
+@media(min-width: $screen-xs-max) and (max-width: $screen-sm-min){
+    .title{
+        padding: 0px !important;
+    }/*
+    #titleBook{
+        display : none !important;
+    }*/
+    .cartNavbar{
+        margin-right: 0px !important;
+    }
+
+    #geotagging{
+        display:block;
+    }
+}
+
+@media (max-width: $screen-sm-min){
+    header{
+        margin-bottom: 0px !important;
+    }
+    .noDisplayTablet{
+        display: none;
+    }
+    .index{
+        border-left: none !important;
+    }
+    .options2{
+        .cursorRightIcon{
+            border: none;
+        }
+    }
+    .modal-content{
+      margin-top: 70px !important;
+    }
+    .rightPositionPdf{
+      right: 30px;
+    }
+    .rightPositionBook{
+      right: 20px;
+    }
+    .progress{
+        width: 100px;
+        margin: auto;
+        height: 10px;
+        display: none;
+        margin-top: 2px;
+    }
+    .coverBigImage{
+      //opacity: 0.7;
+    }
+    #treeIndex{
+      height: 100% !important;
+    }
+    #redirecttocart{
+      display: none !important;
+    }
+    .maxWidthPdf{
+      max-width: 101px !important;
+    }
+    .maxWidthBook{
+      max-width: 118px !important;
+    }
+    .widthPdf{
+      width: 101px;
+      margin: auto;
+      background-color: black;
+      opacity: 0.9;
+      height: 25px;
+      padding-top: 5px;
+    }
+    .widthPdf:hover{
+      width: 101px;
+      margin: auto;
+      background-color:  $red;
+      opacity: 0.9;
+      height: 25px;
+      padding-top: 5px;
+    }
+    .widthBook{
+      width: 118px;
+      margin: auto;
+      background-color: black;
+      opacity: 0.9;
+      height: 25px;
+      padding-top: 5px;
+    }
+    .widthBook:hover{
+      width: 118px;
+      margin: auto;
+      background-color: $red;
+      opacity: 0.9;
+      height: 25px;
+      padding-top: 5px;
+    }
+    #goToPageForm{
+      width: 37px !important;
+      input{
+        text-align: center !important;
+        padding: 0;
+      }
+    }
+    #mobileContTitle{
+      margin-top: -30px !important;
+      #titleParagraph{
+        font-size : 1.6rem;
+        //margin-bottom: -10px;
+        overflow: hidden;
+        line-height: 1;
+      }
+    }
+    .leftArrowRightWhenOpenedSidebar{
+      left: 15px !important;
+    }
+    .bookmarkWhenOpenSidebar{
+      right: 20px !important;
+    }
+    #categoryInMenu{
+        display: none !important;
+    }
+    .registrationHeader{
+        display: none;
+    }
+    .registrationWithoutPadding{
+        padding-top: 0px !important;
+    }
+    .returnToLogin{
+        display: inline !important;
+    }
+    .navbar-header-center{
+        float: left;
+        /* padding: 15px; */
+        text-align: center;
+        width: 100%;
+        .navbar-brand{
+            float: none;
+            overflow: hidden;
+            line-height: 17px;
+        }
+    }
+    .yesDisplayTablet{
+        display : block !important;
+    }
+    .desiderataItem .menu-control{
+        a{
+            border: none !important;
+        }
+    }
+    .addDesiderata{
+        display: none;
+    }
+
+    .options2{
+        padding-top: 140px !important;
+    }
+
+
+    .cartNavbar{
+        text-align: right;
+    }
+    .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+        background-color: $red;
+    }
+    nav{
+        padding-top : 15px;
+        margin-bottom: 0px !important;
+        .icon-bar{
+            background-color : white !important;
+        }
+        .navbar-header{
+            button{
+                border: none;
+                margin-right: 5px;
+            }
+            .navbar-brand, .navbar-brand:hover{
+                color: $white;
+                text-transform: uppercase;
+                cursor: default;
+            }
+            .backContainer{
+              position: absolute;
+              font-size: 25px;
+              padding-top: 7px;
+              left: 5px;
+              cursor: pointer;
+              height: 40px;
+              width: 40px;
+              top: 20px;
+
+            }
+            .titleContainer{
+                width: calc(100% - 40px);
+                margin-left: 40px;
+                height: 17px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space : nowrap;
+            }
+        }
+        .title{
+            margin: 0px !important;
+            border: 0px !important;
+            text-align: right;
+        }
+        .navbar-nav .active{
+            display: none;
+        }
+        #headerDesiderata{
+            border: none;
+        }
+    }
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+		top: 0;
+		border-width: 0 0 1px;
+	}
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+		margin-top: 7.5px;
+	}
+	.navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+  		display:block !important;
+	}
+    .sidebar{
+        .active{
+            border-left: 1px solid $white3;
+        }
+        height: 100vh;
+        ul{
+            padding-top: 15px !important;
+            margin-bottom: 0 !important;
+            background-image: none !important;
+            margin-top: 0px !important;
+            border: solid 1px $white3;
+            padding-left: 0px !important;
+            right: 250 !important;
+            width: 40px;
+        }
+
+    }
+    .options{
+        padding-top: 70px !important;
+        margin-top: 0px !important;
+        .col-md-4{
+            padding: 0 15px !important;
+        }
+    }
+    .options .row{
+        background-color: white;
+    }
+    .options2{
+        padding-top : 125px !important;
+    }
+    #containerTitleAndParagraph{
+        bottom : 10px !important;
+        // width: 50% !important;
+        // left: 18%;
+    }
+    .cursorRightIcon{
+        margin-right : -15px !important;
+        border-left : solid 1px $white3;
+        padding-left: 19px !important;
+        padding-bottom: 10px !important;
+        padding-right: 8px;
+        border-right: solid 1px $white3;
+    }
+
+    book-annotator{
+        padding-right: 0px !important;
+        padding-left : 0px !important;
+        margin-top: 20px !important;
+        img{
+            max-width: 100%;
+        }
+    }
+    .page{
+        padding-top: 110px !important;
+    }
+    .optionsOpen{
+        margin-left: -250px;
+        width: 100% !important;
+
+    }
+    .index{
+        margin-top : 25px !important;
+    }
+
+    .sidebar .none{
+        right: 0px !important;
+    }
+
+    #bookScrolling{
+        height : calc(100% - 110px);
+        padding-left: 0px;
+        margin-top: 20px;
+        #bookText{
+          //padding-left: 5px;
+          //padding-right: 5px;
+        }
+    }
+
+    .loginContainer{
+        background-color: $red;
+        height:100%;
+        width:100%;
+        padding-top:100px;
+        .textContainer{
+            display: block;
+            background-color: #fff;
+            //padding-top: 10px;
+            img{
+                //margin-top:10px;
+                display:block;
+                margin: auto;
+            }
+            .errorMessage{
+                height: 40px;
+                .fa-exclamation{
+                    font-size: 32px;
+                    border: 2px solid #ffbf00;
+                    border-radius: 30px;
+                    background-color: #fff;
+                    color: #ffbf00;
+                    width: 40px;
+                    height: 40px;
+                    text-align: center;
+                    padding-top: 3px;
+                    margin-right: 7px;
+                    }
+            }
+            .errorMessage{
+                i{
+                    float:left;
+                }
+            }
+            form{
+                #submit{
+                    width:100%;
+                    background-color : $red;
+                    color: #fff;
+                    height: 40px;
+                }
+                #registerNow{
+                    color: #000 !important;
+                    height:40px;
+                    background-color: #ddd !important;
+                }
+                #lostPass{
+                    float: right !important;
+                    color: #000 !important;
+                    margin-bottom: 10px !important;
+                }
+              i{
+                background-color: $red;
+                color: white;
+                top: 0px;
+              }
+              input{
+                border: 0px;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+                background-color: $grey7;
+              }
+              .left-addon .glyphicon  { left:  0px;}
+              .left-addon input  { padding-left:  40px; }
+              .inner-addon{
+                  margin: 15px 0px;
+              }
+              button{
+                  width: 100%;
+                  margin: 5px 0;
+              }
+            }
+        }
+        .title{
+          font-size : 30px;
+          color : $red;
+        }
+        #retry{
+          color: #fff;
+          background-color: $red;
+          height: 40px;
+          margin-top: 20px;
+          width:100%;
+          margin-bottom:20px;
+
+        }
+    }
+
+    .recoverContainer{
+        background-color: $red;
+        height:100%;
+        width:100%;
+        padding-top:100px;
+        .textContainer{
+            display: block;
+            background-color: #fff;
+            padding-top: 10px;
+            img{
+                margin-top:10px;
+                display:block;
+                margin: auto;
+            }
+            .successMessage{
+                height: 150px;
+                .fa-check{
+                    font-size: 55px;
+                    border: 3px solid #A3DD86;
+                    border-radius: 100px;
+                    background-color: #fff;
+                    color: #A3DD86;
+                    margin: auto;
+                    display: block;
+                    width: 100px;
+                    height: 100px;
+                    padding-top: 21px;
+                    padding-left: 21px;
+                }
+            }
+            .errorMessage{
+                height: 40px;
+                .fa-exclamation{
+                    font-size: 32px;
+                    border: 2px solid #ffbf00;
+                    border-radius: 30px;
+                    background-color: #fff;
+                    color: #ffbf00;
+                    width: 40px;
+                    height: 40px;
+                    text-align: center;
+                    padding-top: 3px;
+                    margin-right: 7px;
+                    }
+            }
+            .errorMessage{
+                i{
+                    float:left;
+                }
+            }
+            form{
+                #submit{
+                    width:100%;
+                    background-color : $red;
+                    color: #fff;
+                    height: 40px;
+                }
+                #registerNow{
+                    color: #000 !important;
+                    height:40px;
+                    background-color: #ddd !important;
+                }
+                #lostPass{
+                    float: right !important;
+                    color: #000 !important;
+                    margin-bottom: 10px !important;
+                }
+              i{
+                background-color: $red;
+                color: white;
+                top: 0px;
+              }
+              input{
+                border: 0px;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+                background-color: $grey7;
+              }
+              .left-addon .glyphicon  { left:  0px;}
+              .left-addon input  { padding-left:  40px; }
+              .inner-addon{
+                  margin: 15px 0px;
+              }
+              button{
+                  width: 100%;
+                  margin: 5px 0;
+              }
+            }
+        }
+    }
+
+    #pdfPage1Cont{
+        height: 100%;
+        overflow: scroll;
+        // img{
+        //     max-width: none !important;
+        //     max-height: none !important;
+        // }
+    }
+
+  ul.fancytree-container li{
+      margin: 5px 0;
+      font-size: 1.7rem;
+  }
+
+  #containerTitleAndParagraphDes{
+        position: absolute !important;
+        top: -10px !important;
+        width: 50% !important;
+        left: 18% !important;
+        margin-left : 0 !important;
+    #titleBook{
+      width:100% !important;
+      margin-left: 0 !important;
+      left: 0 !important;
+      position: inherit !important;
+    }
+  }
+
+}
+
+//@media (min-width: 992px) {
+    .noDisplayPc{
+        display : none;
+    }
+    .offlineError{
+      font-weight: bold;
+      margin: 15px;
+      text-align: center;
+    }
+    .leftWhenOpenedSidebar{
+      left: -80px;
+    }
+    .leftArrowRightWhenOpenedSidebar{
+      left: -175px;
+    }
+    .bookmarkWhenOpenSidebar{
+      margin-right: 250px;
+    }
+    .rightBookmark{
+      right: 20px;
+    }
+    .marginToElementSidebar{
+      margin-top: 30px;
+    }
+    .keywordsInSidebar{
+      .popover{
+        top: 0px !important;
+      }
+      .select2-choices{
+        left: 0px;
+      }
+      ul[role=listbox]{
+//        right: 75px;
+//        width: 232px;
+          margin-top: -26px;
+//        padding-top: 0px;
+//        max-height: 200px;
+//        overflow-x: hidden;
+//        overflow-y: auto;
+//        background-image: none;
+//        background-color: white;
+//        border: 1px solid #EEEEEE;
+//        border-top: none;
+      }
+      .arrow{
+        top: 20px !important;
+      }
+    }
+
+    .cartNavbar{
+        margin-right: 10px;
+        margin-top: 5px;
+        color: white;
+        cursor: pointer;
+    }
+
+    html{
+      letter-spacing: 0.05rem;
+      font-family: 'Open Sans', sans-serif;
+      *{
+          -webkit-touch-callout: none;
+          -moz-touch-callout: none;
+          -ms-touch-callout: none;
+          touch-callout: none;
+        }
+    }
+
+    header{
+      position: fixed;
+      width: 100%;
+      z-index: 999;
+      background: #fff;
+    }
+
+    .container{
+      padding-top: 120px;
+      overflow: hidden;
+    }
+
+    /* enable absolute positioning */
+    .inner-addon {
+      position: relative;
+    }
+
+    /* style glyph */
+    .inner-addon .glyphicon {
+      position: absolute;
+      padding: 10px;
+      pointer-events: none;
+      color: gray;
+    }
+
+    /* align glyph */
+    .left-addon .glyphicon  { left:  0px;}
+    .right-addon .glyphicon { right: 0px;}
+
+    /* add padding  */
+    .left-addon input  { padding-left:  30px; }
+    .right-addon input { padding-right: 30px; }
+
+    .noPad{
+      padding: 0;
+    }
+
+    input,select{
+      border-radius: 0 !important;
+      -webkit-appearance: none;
+    }
+
+    .ng-invalid-required.ng-touched{
+      border-color: $redLight;
+    }
+
+    .ng-invalid-required.ng-untouched{
+      border-color: $grey4;
+    }
+
+    .navbar-default{
+      background: $red;
+      border-radius: 0;
+      border:0;
+      min-height: 38px;
+      font-family: 'Dosis', sans-serif;
+      font-size: 1.5rem;
+      a{
+        color: $white;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .navbar-nav{
+        float: right;
+        li{
+          .active{
+            margin: 0 15px 0 0;
+            padding-right: 15px;
+            .triangle {
+              width: 0;
+              height: 0;
+              border-left: 5px solid transparent;
+              border-right: 5px solid transparent;
+              border-bottom: 5px solid white;
+              margin: auto;
+            }
+          }
+          .title {
+            text-transform: uppercase;
+            color: white;
+            font-weight: 300;
+            margin: 8px 15px 2px 0;
+            padding-right: 15px;
+            border-right: 1px solid $white;
+            font-size: 1.8rem;
+          }
+          &:last-child{
+            .title{
+              border-right: 0;
+            }
+          }
+        }
+      }
+    }
+
+    .right{
+      text-align: right;
+      z-index: 100;
+    }
+    .left{
+        z-index: 100000000000;
+    }
+
+    .logo{
+      margin-top: -60px;
+      z-index: 9999;
+      position: relative;
+      float: left;
+      margin-left: 50px;
+      width: 200px;
+      height: 85px;
+      overflow: hidden;
+    }
+
+    .optionsOpen{
+      //width: calc(100% - 250px) !important;
+    }
+
+
+    .options{
+      position: fixed !important;
+      width: 100%;
+      background-color: white;
+      z-index: 100;
+      border-bottom: 1px solid $gray;
+      height: 40px;
+      margin-bottom: 10px;
+      position: relative;
+      margin-top: 85px;
+      .ui-select-container{
+        width: 100%;
+        .select2-choices{
+          border: 1px solid #ccc !important;
+          height: 34px !important;
+          overflow-y : scroll;
+        }
+      }
+      .col-md-4{
+        padding: 0 4px 0 4px !important;
+      }
+      .form-group{
+        margin-bottom: 5px;
+      }
+      .icons{
+        text-align: right;
+        .col-md-5{
+          text-align: center;
+          &:first-child {
+            border-right: 1px solid $gray;
+          }
+        }
+        img{
+          height: 30px;
+          cursor: pointer;
+        }
+      }
+      .activeRed{
+        border-bottom: 5px solid $red;
+        padding-top: 4px;
+      }
+      .title{
+        text-align: center;
+        font-size: 2.2rem;
+      }
+      .arr{
+        cursor: pointer;
+        padding: 3px;
+      }
+      .arr[disabled=disabled]{
+        cursor: default;
+      }
+      #containerTitleAndParagraph{
+        position: absolute;
+        width: 100%;
+        bottom: 0px;
+      }
+      .singleMarginToTitleParagraph{
+        margin-top: -31px;
+      }
+      .doubleMarginToTitleParagraph{
+        margin-top: -48px;
+      }
+      .cursorRightIcon{
+        cursor: pointer;
+        float: right;
+      }
+      .favB{
+        margin-bottom: -26px;
+        img{
+          &:first-child {
+            padding: 0 10px;
+          }
+        }
+      }
+    }
+
+    .options3{
+        padding-top: 165px !important;
+    }
+
+    .options2{
+      border-bottom: 1px solid $gray;
+      height: 40px;
+      margin-bottom: 10px;
+      position: relative;
+      padding-top: 165px;
+      position: fixed;
+      width: 100%;
+      background: #fff;
+      position: fixed;
+      z-index: 900;
+      .col-md-4{
+        padding: 0 4px 0 4px !important;
+      }
+      .form-group{
+        margin-bottom: 5px;
+      }
+      .icons{
+        text-align: right;
+        .col-md-5{
+          text-align: center;
+          &:first-child {
+            border-right: 1px solid $gray;
+          }
+        }
+        img{
+          height: 30px;
+          cursor: pointer;
+        }
+      }
+      .activeRed{
+        border-bottom: 5px solid $red;
+        padding-top: 4px;
+      }
+      .title{
+        text-align: center;
+        font-size: 2.2rem;
+      }
+      .arr{
+        cursor: pointer;
+        padding: 3px;
+      }
+      .arr[disabled=disabled]{
+        cursor: default;
+      }
+      #containerTitleAndParagraph{
+        position: absolute;
+        width: 100%;
+        bottom: 0px;
+      }
+      #containerTitleAndParagraphDes{
+        position: absolute;
+        top: -10px;
+        width: 50%;
+        left: 50%;
+        margin-left: -25%;
+        #titleBook{
+          z-index: 1000;
+          position: absolute;
+          left: 50%;
+          bottom: 35px;
+          height: 28px;
+          width: 100%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          margin-left: -50%;
+        }
+        #titleDes{
+          bottom: 60px;
+          height:30px;
+        }
+        #titleParagraph{
+        z-index: 1000;
+        font-size: 1.7rem;
+        position: absolute;
+        //bottom: 5px;
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-left: -50%;
+        left: 50%;
+        }
+      }
+      .singleMarginToTitleParagraph{
+        margin-top: -31px;
+      }
+      .doubleMarginToTitleParagraph{
+        margin-top: -48px;
+      }
+      .cursorRightIcon{
+        cursor: pointer;
+        float: right;
+      }
+      .favB{
+        margin-bottom: -26px;
+        img{
+          &:first-child {
+            padding: 0 10px;
+          }
+        }
+      }
+    }
+    .page{
+      padding-top: 150px;
+      width: 104.33%;
+      .image{
+        text-align: center;
+        padding: 30px;
+      }
+      .text{
+        margin-top: 40px;
+        line-height: 2.5rem;
+        font-size: 1.55rem;
+        /*color: rgb(125,125,125);*/
+      }
+      em{
+        font-style: inherit;
+      }
+    }
+    .books {
+      .row{
+        border-bottom: 1px solid $gray;
+        &:last-child{
+          border-bottom: 0;
+        }
+      }
+      .book {
+        padding: 50px 0 20px 0;
+        margin: auto;
+        text-align: center;
+        font-size: 1.3rem;
+        height: 330px;
+        .title{
+          padding-top: 5px;
+          font-size: 1.5rem;
+          font-family: 'Dosis', sans-serif;
+        }
+        .author{
+          font-weight: 600;
+        }
+        .publisher{
+          font-weight: 600;
+          color: #888;
+        }
+        .fav{
+          height: 180px;
+          position: relative;
+          .fa-times{
+            position: absolute;
+            top: -15px;
+            right: 15px;
+            z-index: 10;
+            font-size: 30px;
+            color: $red;
+          }
+          .fa-pencil{
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            z-index: 10;
+            font-size: 30px;
+            color: $red;
+          }
+          a{
+            position: relative;
+            float: left;
+            width: 100%;
+          }
+        }
+        img{
+          position: relative;
+          margin: auto;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          max-height:180px;
+          max-width:100%;
+          max-width: 118px;
+        }
+        .add{
+          position: absolute;
+        }
+        .text{
+          color: $grey2;
+          position: absolute;
+          bottom: 35px;
+          left: 0;
+          right: 0;
+        }
+        a{
+          text-decoration: none;
+          cursor: pointer;
+        }
+        .num{
+          width: 50px;
+          margin-left: -25px;
+          left : 50%;
+          top: 160px;
+          font-size: 1rem;
+          /*z-index: 999;*/
+          position: absolute;
+          color: $white;
+        }
+      }
+    }
+    #treeIndex{
+      overflow: scroll;
+      height: 92%;
+      text-align: left;
+      .fancytree-title{
+        font-weight: bold;
+        max-width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .fancytree-folder > .fancytree-title{
+        font-weight: normal;
+      }
+      .fa-bookmark{
+        color: $grey5;
+      }
+    }
+    .containerNewDesiderata{
+      width: 100%;
+      padding-left: 65px;
+      padding-right: 30px;
+      padding-top: 200px;
+    }
+    .buttonsCart{
+        text-align: center;
+        margin-top: 50px;
+        input, input:hover, input.active{
+            padding: 5px 15px;
+            color: rgba(255,255,255,.8) !important;
+            border: none;
+            letter-spacing: .05rem;
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+        .continueInCart{
+            margin-right: 50px;
+            background-color: $grey4;
+        }
+        .goToCash{
+            margin-left: 50px;
+            background-color: #b12031;
+        }
+    }
+    .confirmPayment{
+        margin-top: 100px;
+        .containerTitleConfirmPayment{
+            height: 60px;
+            padding-right: 20px;
+            #titlePayment{
+                float: left;
+                font-size: 35px;
+                font-weight: 100;
+                padding-left: 40px;
+            }
+        }
+        .containerConfirmPayment{
+            background-color: $grey6;
+            min-height: 200px;
+            padding-top: 50px;
+            div{
+                font-weight: bold;
+            }
+        }
+        .goToLibrary{
+            padding: 5px 15px;
+            color: rgba(255,255,255,.8) !important;
+            border: none;
+            letter-spacing: .05rem;
+            font-size: 1.5rem;
+            font-weight: 400;
+            background-color: #b12031;
+        }
+    }
+    .errorInPayment{
+        font-weight: bold;
+        color: $red;
+        text-align: center;
+        font-size: 20px;
+        margin-top: 100px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid $grey4;
+        i{
+            p{
+                float: right;
+                font-size: 27px;
+                margin-left: 10px;
+                margin-top: 8px;
+            }
+        }
+    }
+    .noErrorInPayment{
+        margin-top: 100px;
+    }
+    .cartContainer{
+      .objInCart{
+        #containerTitleCart{
+          height: 60px;
+          border-bottom: 1px solid $grey4;
+          padding-right: 20px;
+          #titleCart{
+            float: left;
+            font-size: 35px;
+            font-weight: 100;
+            padding-left: 40px;
+          }
+          #elementsInCart{
+            float: right;
+            font-size: 20px;
+            margin-top: 15px;
+          }
+        }
+        .singleElementInCart{
+          padding-top: 40px;
+          padding-bottom: 40px;
+          border-bottom: 1px solid $grey4;
+          .imageSingleObjInCart{
+            padding: 10px;
+            width: 200px;
+            height: 250px;
+            border: 1px solid $grey4;
+            text-align: center;
+            margin: auto;
+            img{
+              height: 100%;
+              max-height: 230px;
+              max-width: 178px;
+            }
+          }
+          .authorSingleObjInCart{
+              font-weight: bold;
+              border-bottom: 1px solid $grey4;
+              padding-bottom: 2px;
+              margin-bottom: 10px;
+              i{
+                  float: right;
+              }
+          }
+          .priceSingleObjInCart{
+              text-align: right;
+              color: $red;
+              font-weight: bold;
+              i{
+                  float: right;
+                  margin-left: 40px;
+                  margin-top: 3px;
+                  cursor: pointer;
+                  color: $black2;
+              }
+          }
+        }
+        .totalInCart{
+            border-top: 3px solid $grey4;
+            padding-top: 20px;
+            .totalPrice{
+                float: right;
+                margin-right: 70px;
+                margin-left: 90px;
+                font-weight: bold;
+            }
+            .totalTitle{
+                float: right;
+                font-weight: bold;
+                font-size: 15px;
+            }
+        }
+      }
+      .fatturation{
+          #containerTitleCart{
+          height: 60px;
+          border-bottom: 1px solid $grey4;
+          padding-right: 20px;
+          margin-bottom: 50px;
+          #titleCart{
+            float: left;
+            font-size: 35px;
+            font-weight: 100;
+          }
+          #elementsInCart{
+            float: right;
+            font-size: 20px;
+            margin-top: 15px;
+          }
+        }
+        .containerFatturation{
+
+        }
+      }
+    }
+    .collection{
+      //margin-top: 20px;
+      .containerTitleCollection{
+        margin-bottom: 10px;
+        #titleCategories{
+          font-size: 27px;
+          font-weight: 200;
+        }
+      }
+      .categories{
+        .category{
+          float: left;
+          height: 30px;
+          padding-left: 0px;
+          padding-right: 0px;
+          border-bottom: 1px solid $grey4;
+          cursor: pointer;
+          i{
+            float: left;
+            margin-right: 5px;
+            color: $grey4;
+          }
+          p{
+            float: left;
+            margin-top: 5px;
+            font-size: 15px;
+          }
+        }
+        .category:hover, .category:active{
+          color: white;
+          background-color: $red;
+        }
+      }
+      #listCollectionBook{
+        padding-top: 50px;
+        #unlockCode{
+          cursor: pointer;
+          i{
+            margin-right: 5px;
+          }
+        }
+        #popoverUnlock{
+          #titleUnlock{
+            text-align: center;
+          }
+          form{
+            margin-top: 20px;
+            text-align: center;
+            #submit{
+              margin-top: 10px;
+              background-color: #b12031;
+              color: #fff;
+              height: 25px;
+              width: 70px;
+              font-weight: 300;
+              border: none;
+            }
+          }
+        }
+        .collectionBook {
+          position: relative;
+          border: 1px solid $grey4;
+          margin: 0px 15px 40px 15px;
+          font-size: 1.3rem;
+          height: 350px;
+          width: 180px;
+          float: left;
+          .cart{
+            position: absolute;
+            width: 160px;
+            bottom: 0;
+            padding: 2px 0;
+            margin-left: 10px;
+            border-top: 1px solid $grey4;
+            margin-right: 10px;
+            i{
+              float: right;
+              color: $red;
+              cursor: pointer;
+            }
+          }
+          .informationsCollectionBook{
+            padding-left: 10px;
+            padding-right: 10px;
+          }
+          .title{
+            padding-top: 5px;
+            font-size: 1.5rem;
+            font-family: 'Dosis', sans-serif;
+          }
+          .author{
+            font-weight: 600;
+          }
+          .publisher{
+            font-weight: 600;
+            color: #888;
+          }
+          .price{
+            color: $red;
+          }
+          .fav{
+            height: 160px;
+            position: relative;
+            padding: 10px;
+            text-align: center;
+          }
+          img{
+            position: relative;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            max-height:100%;
+            max-width:100%;
+          }
+          .add{
+            position: absolute;
+          }
+          .text{
+            color: $grey2;
+            position: absolute;
+            bottom: 35px;
+            left: 0;
+            right: 0;
+          }
+          a{
+            text-decoration: none;
+            cursor: pointer;
+          }
+          .num{
+            width: 50px;
+            margin: auto;
+            font-size: 1rem;
+            margin-top: -19px;
+            z-index: 999;
+            position: relative;
+            color: $white;
+          }
+        }
+      }
+      #singleCollectionBook{
+        padding-top: 50px;
+        .imageSingleCollectionBook{
+          padding: 10px;
+          width: 200px;
+          height: 250px;
+          border: 1px solid $grey4;
+          text-align: center;
+          margin: auto;
+          img{
+            height: 100%;
+            max-height: 230px;
+          }
+        }
+        .descriptionSingleCollectionBook{
+          float: left;
+          padding: 10px;
+          #authorSingleColl{
+            font-weight: 600;
+          }
+          #containerCartSingleColl{
+            float: left;
+            margin-top: 30px;
+            #price{
+              color: $red;
+            }
+          }
+          #containerBuySingleColl{
+            float: left;
+            margin-top: 30px;
+            margin-left: 60px;
+            #buy{
+              cursor: pointer;
+              i{
+                margin-right: 5px;
+              }
+            }
+          }
+          .informations{
+            margin-top: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid $grey4;
+            .informationsSingleColl{
+              float: left;
+              font-weight: bold;
+              margin-right: 5px;
+            }
+          }
+          .description{
+            margin-top: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid $grey4;
+            #titleDescription{
+              margin-bottom: 0px;
+              font-weight: bold;
+            }
+          }
+          .returnToList{
+            margin-top: 40px;
+            padding-right: 0px;
+            input{
+              float: right;
+              border: none;
+              background-color: $red;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    .help{
+      padding-top: 100px;
+      margin-left : 0px !important;
+      margin-right : 0px !important;
+      #titleHelp{
+        font-size: 35px;
+        font-weight: 100;
+      }
+      .containerHelp{
+        background-color: $grey6;
+        margin-top: 30px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        .description{
+          height: 200px;
+        }
+        #years{
+          width: 70px;
+        }
+        #city{
+          width: 140px;
+        }
+        .fa-check{
+            font-size: 100px;
+            border: 5px solid $green3;
+            border-radius: 100px;
+            background-color: white;
+            color: $green3;
+        }
+      }
+      .confirmHelp{
+        text-align: center;
+        margin-top: 30px;
+        #submit{
+          background-color: $red;
+          color: $white;
+          font-weight: 300;
+          border: none !important;
+          margin-left: 20px;
+          width: 150px;
+        }
+        #cancel{
+          background-color: $grey13;
+          color: $white;
+          font-weight: 300;
+          border: none !important;
+          margin-right: 20px;
+          width: 90px;
+          border-radius: 0px;
+        }
+      }
+    }
+    .registration{
+        padding-top: 100px;
+        width: 100%;
+        margin-left: 0px;
+      #titleRegistration{
+        font-size: 35px;
+        font-weight: 100;
+      }
+      #subtitleRegistration{
+        color: $red;
+      }
+      .containerRegistration{
+        background-color: $grey6;
+        margin-top: 30px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        .inputRegistration{
+          float: left;
+        }
+        .fa-check{
+            font-size: 100px;
+            border: 5px solid $green3;
+            border-radius: 100px;
+            background-color: white;
+            color: $green3;
+        }
+      }
+      .confirmRegistration{
+        text-align: center;
+        margin-top: 30px;
+        #submit{
+          padding: 5px 15px;
+          background-color: $red;
+          color: $white;
+          max-height: 40px;
+          max-width: 100px;
+          border: none;
+          letter-spacing: 0.05rem;
+          font-size: 1.5rem;
+          font-weight: 400;
+        }
+      }
+    }
+    .errorPage{
+      position: relative;
+      width: 300px;
+      left: 50%;
+      margin-left: -150px;
+      margin-top: 60px;
+      .title{
+        font-size: 30px;
+        font-weight: 100;
+        margin-bottom: 25px;
+        color: $red;
+      }
+      .description{
+        font-weight: 200;
+      }
+      input{
+        float: right;
+        background-color: $red;
+        color: #fff;
+        height: 25px;
+        width: 70px;
+        font-weight: 300;
+        border: 0px;
+        margin-top: 10px;
+      }
+    }
+    .login{
+      .loginForm{
+        position: relative;
+        width: 300px;
+        left: 50%;
+        margin-left: -150px;
+        margin-top: 60px;
+        form{
+          i{
+            background-color: $red;
+            color: white;
+            top: 0px;
+          }
+          input{
+            border: 0px;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            background-color: $grey7;
+          }
+          #confirmLogin{
+            margin-top: 10px;
+          }
+          .containerSubmit{
+            float: left;
+            width: 100%;
+            #submit{
+              float: right;
+              background-color: $red;
+              color: white;
+              height: 25px;
+              width: 70px;
+              font-weight: 300;
+            }
+            #lostPass{
+              float: right;
+              color: $grey8;
+              font-size: 12px;
+              margin-top: 5px;
+            }
+            #rememberLogin{
+              float: left;
+              margin-top: 5px;
+              font-weight: 200;
+              font-size: 13px;
+              input{
+                margin-right: 5px;
+              }
+            }
+            #registerNow{
+              float: left;
+              font-size: 13px;
+              margin-top: 4px;
+              color: $grey8;
+            }
+            a{
+              color: $red;
+              margin-top: 5px;
+              position: relative;
+              float: left;
+            }
+          }
+          .left-addon input{
+            padding-left:  40px;
+          }
+          .loginError{
+            color: $red;
+            font-size: 13px;
+            margin-bottom: 5px;
+          }
+          .loginTitle{
+            font-size: 30px;
+            font-weight: 100;
+            margin-bottom: 50px;
+          }
+          .user{
+            margin-bottom: 30px;
+          }
+        }
+      }
+    }
+    .newDesiderata{
+      .leftTitle{
+        h3{
+          font-weight: 200;
+          margin-top: 14px;
+        }
+      }
+      .steps{
+        text-align: center;
+        .stepNewDesiderata{
+          width: 50px;
+          height: 50px;
+          background-color: $grey7;
+          display: inline-block;
+          border-radius: 100px;
+          font-size: 25px;
+          font-weight: 200;
+          padding-top: 6px;
+        }
+        .stepSelected{
+          background-color: $grey2;
+          color: white;
+        }
+        .betweenSteps{
+          width: 40px;
+          height: 3px;
+          background-color: $grey7;
+          display: inline-block;
+          margin: 0px;
+          margin-bottom: 6px;
+        }
+      }
+      .rightButton{
+        height: 50px;
+        padding-top: 10px;
+        .cancel{
+          float: right;
+          margin-right: 5px;
+        }
+        .confirm{
+          float: right;
+        }
+      }
+      .firstStep{
+        .containerFirstStep{
+          position: relative;
+          width: 300px;
+          left: 50%;
+          margin-left: -150px;
+          margin-top: 60px;
+        }
+      }
+      .secondStep{
+        .containerSecondStep{
+          position: relative;
+          width: 300px;
+          left: 50%;
+          margin-left: -150px;
+          margin-top: 60px;
+          .row{
+            margin-left: 0px;
+          }
+          label{
+            font-weight: 400;
+          }
+          .ui-select-container{
+            width: 100%;
+            .select2-choices{
+              height: 60px !important;
+            }
+          }
+          .ui-select-match li{
+            background-image: none!important;
+            background-color: $celestial !important;
+            color: $white !important;
+          }
+          .select2-results .select2-highlighted{
+            color: black;
+          }
+        }
+      }
+      .thirdStep{
+        .researchThirdStep{
+          h5{
+            margin-bottom: -10px;
+          }
+        }
+        .rightThirdStep{
+          border-left: 2px solid $grey7;
+        }
+        .rightThirdStep > .col-md-9{
+          padding: 0px;
+        }
+        .rightThirdStep > .col-md-9 > .col-md-12{
+          padding: 0px;
+          padding-bottom: 5px;
+          margin-bottom: 20px;
+          border-bottom: 2px solid $grey7;
+          a{
+            float: right;
+            color: $red;
+            text-decoration: none;
+          }
+        }
+        .rightThirdStep{
+          .bookTitle{
+            font-weight: bold;
+          }
+          .bookParagraph{
+            font-weight: 300;
+          }
+          .initialContentBook{
+            position: relative;
+            max-height: 40px;
+            overflow: hidden;
+            text-align: justify;
+            .dotLastRow{
+              background: $white;
+              bottom: 4px;
+              position: absolute;
+              right: 0;
+            }
+          }
+        }
+      }
+      .newDesiderata{
+        margin-top: 10px;
+        .leftSidebarThirdStep{
+          margin-right: -2px;
+          border-right: 2px solid $grey7;
+          .selectedTests{
+            padding-right: 0px;
+            .selectedTestsTitle{
+              border: 0px !important;
+              margin-bottom: 0px;
+              padding-bottom: 10px;
+              .left-maniglia{
+                height: 100%;
+                position: absolute;
+                width: 10px;
+                top: 0;
+                border-color: $red;
+                left: 0;
+                border-style: solid;
+                border-width: 1px 0 1px 1px;
+                margin-left: -5px;
+              }
+              .right-maniglia{
+                height: 100%;
+                position: absolute;
+                width: 10px;
+                top: 0;
+                border-color: $red;
+                right: 0;
+                border-style: solid;
+                border-width: 1px 1px 1px 0;
+                margin-right: -5px;
+              }
+            }
+            .lastSelectedNotDisplayed{
+              border: 0px !important;
+            }
+            .initialContentBook{
+              position: relative;
+              max-height: 145px;
+              overflow: hidden;
+              text-align: justify;
+              .dotLastRow{
+                background: $white;
+                bottom: 4px;
+                position: absolute;
+                right: 0;
+              }
+            }
+          }
+          .selectedTests > .col-md-12{
+            padding-right: 0px;
+            .col-md-12{
+              padding-right: 0px;
+              padding-bottom: 15px;
+              border-bottom: 2px solid $grey7;
+              a{
+                float: right;
+                color: $red;
+                text-decoration: none;
+              }
+              .selectedTestActions{
+                border-right: 1px solid $red;
+                padding-right: 5px;
+                margin-right: 5px;
+              }
+            }
+            .col-md-12 > p{
+              text-align: justify;
+              margin-bottom: 0px;
+            }
+          }
+          .select2-choices{
+            border: 0px;
+            background-image: none;
+          }
+          .ui-select-match li{
+            background-image: none!important;
+            background-color: $celestial !important;
+            color: $white !important;
+          }
+          .labelThirdStep{
+            font-weight: 400;
+          }
+          .tagThirdStep{
+            .row{
+              margin-left: 0px;
+            }
+          }
+          .col-md-12{
+            margin-bottom: 5px;
+            .col-md-2{
+              padding-right: 0px;
+            }
+            .col-md-10{
+              padding-left: 0px;
+            }
+          }
+          .col-md-12, .col-md-2{
+            padding-left: 0px;
+            h3{
+              font-weight: 200;
+              margin-top: -3px;
+            }
+          }
+          .subLeftSidebar{
+            word-wrap: break-word;
+            padding-left: 0px;
+          }
+          .col-md-3{
+            a{
+              color: $red;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+
+    .containerVideo {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%;
+      margin-bottom: 30px;
+    }
+    .video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .sidebar{
+      margin-top: -5px;
+      text-align: right;
+      margin-right: -30px;
+      img{
+        padding: 5px 10px;
+        width: 40px;
+        cursor: pointer;
+      }
+      #popoverMap{
+        .cursorRightIcon{
+          width: 40px;
+          height: 35px;
+          padding: 5px 10px !important;
+          border: none !important;
+          margin-right: 0px !important;
+        }
+      }
+      .dropdown-menu{
+        position: absolute !important;
+        margin-top: 0px !important;
+      }
+      .active{
+        border-top: 1px solid $gray;
+        border-bottom: 1px solid $gray;
+        border-left: 1px solid $gray;
+        background-color: white;
+        margin-right: -1px;
+      }
+      .none{
+        right: 10px;
+      }
+      ul{
+        padding-top: 35px;
+        margin-bottom: 0;
+        background-color: white;
+        background-image: -webkit-linear-gradient(left,$white 70%, $white2);
+        height: 100vh;
+        margin-top: -10px;
+        position: fixed;
+        right: 250px;
+        li{
+          list-style: none;
+          z-index: 900;
+          position: relative;
+          margin-bottom: 10px;
+        }
+      }
+
+      .fa-minus{
+        margin-top: -10px;
+        padding-top: 0px !important;
+      }
+      .fa-plus{
+          margin-bottom: -10px;
+          padding-top: 0px !important;
+      }
+    }
+
+    .audio{
+      float: left;
+      width: 80px !important;
+      margin-top: 500px;
+    }
+    .layout{
+      .row{
+        &:first-child{
+          margin: 0;
+        }
+      }
+      width: 100%;
+    }
+    .paddingBookDes{
+        margin-top: 98px !important;
+    }
+    .index{
+      height:100%;
+      width:250px;
+      overflow: scroll;
+      padding-bottom: 100px;
+      margin-top: 83px;
+      border-left: 1px solid $gray;
+      position: fixed;
+      right: 0;
+      background: #fff;
+      .title{
+        text-align: center;
+        font-size: 2.2rem;
+        border-bottom: 1px solid #ececec;
+        margin: 10px;
+        font-weight: 700;
+        margin-top: 37px;
+      }
+      .bookmarksItem{
+          margin-top: 40px;
+      }
+    }
+
+    fancy-tree{
+      div{
+        height: 100%;
+        // overflow: scroll;
+      }
+    }
+
+
+    ul.fancytree-container{
+      border: 0 !important;
+    }
+    .fancytree-plain.fancytree-container span.fancytree-node.fancytree-active span.fancytree-title{
+      background-color: rgb(239, 210, 214) !important;
+      border-radius: 0 !important;
+      border:0 !important;
+      color: $black !important;
+      width: 100%;
+      padding: 0 5px;
+    }
+
+    .fancytree-plain.fancytree-container span.fancytree-title{
+      font-size: 1.3rem;
+    }
+
+    .sideShow{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 83.333333%;
+      -webkit-transition: width 0.3s ease, margin 0.3s ease;
+      -moz-transition: width 0.3s ease, margin 0.3s ease;
+      -o-transition: width 0.3s ease, margin 0.3s ease;
+      transition: width 0.3s ease, margin 0.3s ease;
+    }
+
+    .sideHide{
+      width: 100%;
+      -webkit-transition: width 0.3s ease, margin 0.3s ease;
+      -moz-transition: width 0.3s ease, margin 0.3s ease;
+      -o-transition: width 0.3s ease, margin 0.3s ease;
+      transition: width 0.3s ease, margin 0.3s ease;
+    }
+
+    /*!
+     * Fancytree "bootstrap" skin.
+     *
+     * DON'T EDIT THE CSS FILE DIRECTLY, since it is automatically generated from
+     * the LESS templates.
+     */
+    /*******************************************************************************
+     * Common Styles for Fancytree Skins.
+     *
+     * This section is automatically generated from the `skin-common.less` template.
+     ******************************************************************************/
+    /*------------------------------------------------------------------------------
+     * Helpers
+     *----------------------------------------------------------------------------*/
+    .ui-helper-hidden {
+      display: none;
+    }
+    /*------------------------------------------------------------------------------
+     * Container and UL / LI
+     *----------------------------------------------------------------------------*/
+    ul.fancytree-container {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      white-space: nowrap;
+      padding: 3px;
+      margin: 0;
+      background-color: white;
+      border: 1px dotted gray;
+      overflow: hidden;
+      min-height: 0%;
+      position: relative;
+    }
+    ul.fancytree-container ul {
+      padding: 0 0 0 16px;
+      margin: 0;
+    }
+    ul.fancytree-container li {
+      list-style-image: none;
+      list-style-position: outside;
+      list-style-type: none;
+      -moz-background-clip: border;
+      -moz-background-inline-policy: continuous;
+      -moz-background-origin: padding;
+      background-attachment: scroll;
+      background-color: transparent;
+      background-position: 0em 0em;
+      background-repeat: repeat-y;
+      background-image: none;
+      margin: 0;
+    }
+    ul.fancytree-container li.fancytree-lastsib {
+      background-image: none;
+    }
+    ul.fancytree-no-connector > li {
+      background-image: none;
+    }
+    .ui-fancytree-disabled ul.fancytree-container {
+      opacity: 0.5;
+      background-color: silver;
+    }
+    /*------------------------------------------------------------------------------
+     * Common icon definitions
+     *----------------------------------------------------------------------------*/
+    span.fancytree-empty,
+    span.fancytree-vline,
+    span.fancytree-expander,
+    span.fancytree-icon,
+    span.fancytree-checkbox,
+    span.fancytree-radio,
+    span.fancytree-drag-helper-img,
+    #fancytree-drop-marker {
+      width: 1em;
+      height: 1em;
+      display: inline-block;
+      vertical-align: top;
+      background-repeat: no-repeat;
+      background-position: left;
+      background-position: 0em 0em;
+    }
+    span.fancytree-icon,
+    span.fancytree-checkbox,
+    span.fancytree-expander,
+    span.fancytree-radio,
+    span.fancytree-custom-icon {
+      margin-top: 2px;
+    }
+    /* Used by iconclass option and iconClass callback: */
+    span.fancytree-custom-icon {
+      display: inline-block;
+      margin-left: 0.5em;
+    }
+    /* Used by 'icon' node option: */
+    img.fancytree-icon {
+      width: 1em;
+      height: 1em;
+      margin-left: 0.5em;
+      margin-top: 2px;
+      vertical-align: top;
+      border-style: none;
+    }
+    /*------------------------------------------------------------------------------
+     * Expander icon
+     *
+     * Note: IE6 doesn't correctly evaluate multiples class names,
+     *		 so we create combined class names that can be used in the CSS.
+     *
+     * Prefix: fancytree-exp-
+     * 1st character: 'e': expanded, 'c': collapsed, 'n': no children
+     * 2nd character (optional): 'd': lazy (Delayed)
+     * 3rd character (optional): 'l': Last sibling
+     *----------------------------------------------------------------------------*/
+    span.fancytree-expander {
+      cursor: pointer;
+    }
+    .fancytree-exp-n span.fancytree-expander,
+    .fancytree-exp-nl span.fancytree-expander {
+      background-image: none;
+      cursor: default;
+    }
+    /*------------------------------------------------------------------------------
+     * Checkbox icon
+     *----------------------------------------------------------------------------*/
+    span.fancytree-checkbox {
+      margin-left: 0.5em;
+    }
+    .fancytree-unselectable span.fancytree-checkbox {
+      opacity: 0.4;
+      filter: alpha(opacity=40);
+    }
+    /*------------------------------------------------------------------------------
+     * Radiobutton icon
+     * This is a customization, that may be activated by overriding the 'checkbox'
+     * class name as 'fancytree-radio' in the tree options.
+     *----------------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------------
+     * Node type icon
+     * Note: IE6 doesn't correctly evaluate multiples class names,
+     *		 so we create combined class names that can be used in the CSS.
+     *
+     * Prefix: fancytree-ico-
+     * 1st character: 'e': expanded, 'c': collapsed
+     * 2nd character (optional): 'f': folder
+     *----------------------------------------------------------------------------*/
+    span.fancytree-icon {
+      margin-left: 0.5em;
+    }
+    /* Documents */
+    /* Folders */
+    .fancytree-loading span.fancytree-expander,
+    .fancytree-loading span.fancytree-expander:hover,
+    .fancytree-statusnode-wait span.fancytree-icon,
+    .fancytree-statusnode-wait span.fancytree-icon:hover {
+      background-image: none;
+    }
+    /* Status node icons */
+    /*------------------------------------------------------------------------------
+     * Node titles and highlighting
+     *----------------------------------------------------------------------------*/
+    span.fancytree-node {
+      /* See #117 */
+      display: inherit;
+      width: 100%;
+      margin-top: 0px;
+      min-height: 1em;
+    }
+    span.fancytree-title {
+      color: $black2;
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: top;
+      min-height: 1em;
+      padding: 0 3px 0 3px;
+      margin: 0px 0 0 0.5em;
+      border: 1px solid transparent;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border-radius: 3px;
+    }
+    span.fancytree-node.fancytree-error span.fancytree-title {
+      color: $red2;
+    }
+    /*------------------------------------------------------------------------------
+     * Drag'n'drop support
+     *----------------------------------------------------------------------------*/
+    div.fancytree-drag-helper span.fancytree-childcounter,
+    div.fancytree-drag-helper span.fancytree-dnd-modifier {
+      display: inline-block;
+      color: $white;
+      background: $celestial2;
+      border: 1px solid gray;
+      min-width: 10px;
+      height: 10px;
+      line-height: 1;
+      vertical-align: baseline;
+      border-radius: 10px;
+      padding: 2px;
+      text-align: center;
+      font-size: 9px;
+    }
+    div.fancytree-drag-helper span.fancytree-childcounter {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+    }
+    div.fancytree-drag-helper span.fancytree-dnd-modifier {
+      background: $green;
+      border: none;
+      font-weight: bolder;
+    }
+    /*** Drop marker icon *********************************************************/
+    #fancytree-drop-marker {
+      width: 2em;
+      position: absolute;
+      margin: 0;
+    }
+    #fancytree-drop-marker.fancytree-drop-after,
+    #fancytree-drop-marker.fancytree-drop-before {
+      width: 4em;
+    }
+    /*** Source node while dragging ***********************************************/
+    span.fancytree-drag-source.fancytree-drag-remove {
+      opacity: 0.15;
+    }
+    /*** Target node while dragging cursor is over it *****************************/
+    /*------------------------------------------------------------------------------
+     * 'table' extension
+     *----------------------------------------------------------------------------*/
+    table.fancytree-ext-table {
+      border-collapse: collapse;
+    }
+    table.fancytree-ext-table span.fancytree-node {
+      display: inline-block;
+    }
+    /*------------------------------------------------------------------------------
+     * 'columnview' extension
+     *----------------------------------------------------------------------------*/
+    table.fancytree-ext-columnview tbody tr td {
+      position: relative;
+      border: 1px solid gray;
+      vertical-align: top;
+      overflow: auto;
+    }
+    table.fancytree-ext-columnview tbody tr td > ul {
+      padding: 0;
+    }
+    table.fancytree-ext-columnview tbody tr td > ul li {
+      list-style-image: none;
+      list-style-position: outside;
+      list-style-type: none;
+      -moz-background-clip: border;
+      -moz-background-inline-policy: continuous;
+      -moz-background-origin: padding;
+      background-attachment: scroll;
+      background-color: transparent;
+      background-position: 0em 0em;
+      background-repeat: repeat-y;
+      background-image: none;
+      /* no v-lines */
+      margin: 0;
+    }
+    table.fancytree-ext-columnview span.fancytree-node {
+      position: relative;
+      /* allow positioning of embedded spans */
+      display: inline-block;
+    }
+    table.fancytree-ext-columnview span.fancytree-node.fancytree-expanded {
+      background-color: #CBE8F6;
+    }
+    table.fancytree-ext-columnview .fancytree-has-children span.fancytree-cv-right {
+      position: absolute;
+      right: 3px;
+    }
+    /*------------------------------------------------------------------------------
+     * 'filter' extension
+     *----------------------------------------------------------------------------*/
+    .fancytree-ext-filter-dimm span.fancytree-node span.fancytree-title {
+      color: $black2;
+      font-weight: lighter;
+    }
+    .fancytree-ext-filter-dimm tr.fancytree-submatch span.fancytree-title,
+    .fancytree-ext-filter-dimm span.fancytree-node.fancytree-submatch span.fancytree-title {
+      color: black;
+      font-weight: normal;
+    }
+    .fancytree-ext-filter-dimm tr.fancytree-match span.fancytree-title,
+    .fancytree-ext-filter-dimm span.fancytree-node.fancytree-match span.fancytree-title {
+      color: black;
+      font-weight: bold;
+    }
+    .fancytree-ext-filter-hide tr.fancytree-hide,
+    .fancytree-ext-filter-hide span.fancytree-node.fancytree-hide {
+      display: none;
+    }
+    .fancytree-ext-filter-hide tr.fancytree-submatch span.fancytree-title,
+    .fancytree-ext-filter-hide span.fancytree-node.fancytree-submatch span.fancytree-title {
+      color: $black2;
+      font-weight: lighter;
+    }
+    .fancytree-ext-filter-hide tr.fancytree-match span.fancytree-title,
+    .fancytree-ext-filter-hide span.fancytree-node.fancytree-match span.fancytree-title {
+      color: black;
+      font-weight: normal;
+    }
+    .fancytree-ext-filter span.fancytree-icon {
+      position: relative;
+    }
+    .fancytree-ext-filter span.fancytree-childcounter {
+      color: $white;
+      background: $grey5;
+      border: 1px solid gray;
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      min-width: 10px;
+      height: 10px;
+      line-height: 1;
+      vertical-align: baseline;
+      border-radius: 10px;
+      padding: 2px;
+      text-align: center;
+      font-size: 9px;
+    }
+    /*------------------------------------------------------------------------------
+     * 'wide' extension
+     *----------------------------------------------------------------------------*/
+    ul.fancytree-ext-wide {
+      position: relative;
+      min-width: 100%;
+      z-index: 2;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    ul.fancytree-ext-wide span.fancytree-node > span {
+      position: relative;
+      z-index: 2;
+    }
+    ul.fancytree-ext-wide span.fancytree-node span.fancytree-title {
+      position: absolute;
+      z-index: 1;
+      left: 0px;
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    /*******************************************************************************
+     * Styles specific to this skin.
+     *
+     * This section is automatically generated from the `ui-fancytree.less` template.
+     ******************************************************************************/
+    /*******************************************************************************
+     * Plain tree
+     * Modifier classes on <ul> container:
+     * table-hover                : Enable a light mouse hover effect
+     * fancytree-colorize-selected: Give selected (checked) rows a color
+     */
+    ul.fancytree-container ul {
+      padding: 0 0 0 1.5em;
+      margin: 0;
+    }
+    /* Prevent focus frame */
+    .fancytree-container:focus {
+      outline: none;
+    }
+    .fancytree-container .fancytree-active span.fancytree-title input,
+    .fancytree-container.fancytree-colorize-selected .fancytree-selected span.fancytree-title input {
+      color: black;
+    }
+    div.fancytree-drag-helper.fancytree-drop-reject,
+    div.fancytree-drag-helper.fancytree-drop-reject span.fancytree-title {
+      color: $red2;
+    }
+    span.fancytree-node.fancytree-drag-source {
+      background-color: #5bc0de !important;
+    }
+    span.fancytree-node.fancytree-drop-target.fancytree-drop-reject span.fancytree.title {
+      background-color: $red2 !important;
+    }
+    .fancytree-plain.fancytree-colorize-selected span.fancytree-node.fancytree-selected,
+    .fancytree-plain.fancytree-colorize-selected span.fancytree-node.fancytree-selected span.fancytree-title {
+      background-color: $green2;
+      border-color: $green2;
+      color: $white;
+    }
+    .fancytree-plain.fancytree-colorize-selected span.fancytree-node.fancytree-selected:hover span.fancytree-title {
+      background-color: #6ec06e;
+    }
+    .fancytree-plain.fancytree-colorize-selected span.fancytree-node.fancytree-active.fancytree-selected span.fancytree-title {
+      color: $green2;
+    }
+    .fancytree-plain.fancytree-colorize-selected.fancytree-treefocus span.fancytree-title:hover {
+      background-color: #f5f5f5;
+    }
+    .fancytree-plain.fancytree-colorize-selected.fancytree-treefocus span.fancytree-node.fancytree-selected span.fancytree-title {
+      background-color: $green;
+    }
+    .fancytree-plain.fancytree-colorize-selected.fancytree-treefocus span.fancytree-node.fancytree-selected:hover span.fancytree-title {
+      background-color: #4cae4c;
+    }
+    .fancytree-plain.fancytree-colorize-selected.fancytree-treefocus span.fancytree-node.fancytree-active.fancytree-selected span.fancytree-title {
+      color: $green;
+    }
+    .fancytree-plain.fancytree-container span.fancytree-node {
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+    .fancytree-plain.fancytree-container span.fancytree-title {
+      border: 1px solid transparent;
+      border-radius: 3px;
+      outline-radius: 3px;
+    }
+    .fancytree-plain.fancytree-container span.fancytree-title:hover {
+      background-color: #f5f5f5;
+    }
+    .fancytree-plain.fancytree-container span.fancytree-node.fancytree-active span.fancytree-title {
+      background-color: #5094ce;
+      color: $white;
+    }
+    .fancytree-plain.fancytree-container span.fancytree-node.fancytree-active:hover span.fancytree-title {
+      background-color: #3c87c8;
+    }
+    .fancytree-plain.fancytree-container.fancytree-ext-wide span.fancytree-node.fancytree-active {
+      color: $white;
+    }
+    .fancytree-plain.fancytree-container.fancytree-treefocus span.fancytree-node.fancytree-focused span.fancytree-title {
+      border-color: $celestial2;
+    }
+    .fancytree-plain.fancytree-container.fancytree-treefocus span.fancytree-node.fancytree-active span.fancytree-title {
+      background-color: $celestial2;
+      border-color: $celestial2;
+    }
+    .fancytree-plain.fancytree-container.fancytree-treefocus span.fancytree-node.fancytree-active:hover span.fancytree-title {
+      background-color: #2e6da4;
+    }
+    /*******************************************************************************
+     * 'table' extension
+     * Modifier classes on <table>:
+     * table-hover                : Enable a light mouse hover effect
+     * fancytree-colorize-selected: Give selected (checked) rows a color
+     */
+    table.fancytree-ext-table > tbody > tr > td span.fancytree-title {
+      border: none;
+    }
+    table.fancytree-ext-table.fancytree-colorize-selected > tbody > tr.fancytree-selected > td {
+      background-color: $green2;
+    }
+    table.fancytree-ext-table.fancytree-colorize-selected > tbody > tr.fancytree-selected > td,
+    table.fancytree-ext-table.fancytree-colorize-selected > tbody > tr.fancytree-selected > td span.fancytree-title {
+      color: $white;
+    }
+    table.fancytree-ext-table.fancytree-colorize-selected.fancytree-treefocus > tbody > tr.fancytree-selected > td {
+      background-color: $green;
+    }
+    table.fancytree-ext-table.fancytree-colorize-selected.table-hover > tbody > tr.fancytree-selected:hover > td {
+      background-color: #6ec06e;
+    }
+    table.fancytree-ext-table.fancytree-colorize-selected.fancytree-treefocus.table-hover > tbody > tr.fancytree-selected:hover > td {
+      background-color: #4cae4c;
+    }
+    table.fancytree-ext-table.fancytree-colorize-selected.fancytree-treefocus.table-hover > tbody > tr.fancytree-selected.fancytree-active:hover > td,
+    table.fancytree-ext-table.fancytree-colorize-selected.table-hover > tbody > tr.fancytree-selected.fancytree-active:hover > td {
+      background-color: #2e6da4;
+    }
+    table.fancytree-ext-table.fancytree-colorize-selected > tbody > tr.fancytree-active.fancytree-selected {
+      outline-width: 2px;
+      outline-offset: -2px;
+      outline-style: solid;
+      outline-color: $green2;
+    }
+    table.fancytree-ext-table.fancytree-container > tbody > tr.fancytree-active > td {
+      background-color: #5094ce;
+    }
+    table.fancytree-ext-table.fancytree-container > tbody > tr.fancytree-active > td,
+    table.fancytree-ext-table.fancytree-container > tbody > tr.fancytree-active > td span.fancytree-title {
+      color: $white;
+    }
+    table.fancytree-ext-table.fancytree-treefocus.fancytree-container > tbody > tr.fancytree-focused span.fancytree-title {
+      outline: 1px dotted $black;
+    }
+    table.fancytree-ext-table.fancytree-treefocus.fancytree-container > tbody > tr.fancytree-active > td {
+      background-color: $celestial2;
+    }
+    table.fancytree-ext-table.fancytree-treefocus.fancytree-container.table-hover > tbody > tr.fancytree-active:hover > td {
+      background-color: #2e6da4;
+    }
+
+    .menu-control{
+      float: right;
+      margin-right: 0px;
+      margin : 5px 0;
+      a{
+        color: $red3 !important;
+        text-decoration : none;
+        cursor: pointer;
+        margin: 0 3px ;
+        border-right: 1px solid $red3;
+        padding-right: 6px;
+      }
+      .last{
+        border-right : 0;
+      }
+    }
+
+    .dropdownSimilar{
+        float: left;
+        .buttonSimilar{
+            color: #B10231!important;
+            //margin: 0 11px;
+            background-color: transparent;
+            padding: 0px;
+            //margin-top: -1px;
+            border: none;
+        }
+        .dropdown-menu{
+            left: initial;
+            right: 0px;
+            a{
+                border: none;
+            }
+        }
+        .mapDropdown{
+            float: none !important;
+            border: none !important;
+        }
+    }
+
+    .popover{
+      width: 400px !important;
+      border-radius: 0 !important;
+      .label{
+        font-weight: 100 !important;
+      }
+      .form-group{
+        margin: 0 20px;
+      }
+      .ui-select-container{
+        width: 100%;
+        .ui-select-match{
+          li{
+            background-image : none !important;
+            background-color : $celestial !important;
+            color: $white !important;
+          }
+        }
+        .select2-search-field{
+          input{
+            height: 60px !important;
+          }
+        }
+      }
+      button{
+        margin-top: 8px;
+        margin-left: 5px;
+        position: relative;
+        float: right;
+      }
+      .author{
+        font-weight : 600;
+      }
+      .publisher{
+        font-weight: 600;
+        color: #888;
+      }
+      .time{
+        color: $grey9;
+        font-size: 10px;
+      }
+      .comment-control{
+        float: right;
+        margin-right: 0px;
+        margin : 5px 0;
+        a{
+          color: $red3 !important;
+          text-decoration : none;
+          cursor: pointer;
+          margin: 0 3px ;
+          border-right: 1px solid $red3;
+        }
+        .last{
+          border-right: 0;
+        }
+      }
+      .comment-header{
+        margin-left : 15px;
+        margin-bottom: 15px;
+      }
+      .sharingButton{
+        height:40px;
+        width:40px;
+        img{
+          width: 100%;
+          height: 100%;
+          padding: 0px;
+        }
+      }
+    }
+
+    .confirm, .confirm:hover, .confirm:active, .confirm:focus{
+      background-color: $red3 !important;
+      color: $white !important;
+      border-radius : 0 !important;
+    }
+
+
+    .cancel, .cancel:hover, .cancel:active, .cancel:focus{
+      background-color: $grey2 !important;
+      color: $white !important;
+      border-radius : 0 !important;
+    }
+
+    .desiderataItem{
+      padding: 5px 15px;
+      .bodyItem{
+        border-bottom: 1px solid $white3;
+        position: relative;
+        float: left;
+        .titleItem{
+          font-weight: 600 !important;
+        }
+        .textItem{
+          color: $grey10;
+        }
+      }
+      .footerItem{
+        .time{
+          color: $grey9;
+        }
+      }
+    }
+
+    .commentsItem{
+      padding: 5px 15px;
+      .author{
+        font-weight : 600;
+      }
+      .publisher{
+        font-weight: 600;
+        color: #888;
+      }
+      .time{
+        color: $grey9;
+        font-size: 10px;
+      }
+      .comment-header{
+        /*margin-left : 15px;*/
+        margin-bottom: 15px;
+      }
+      .form-control[disabled]{
+        cursor: auto;
+        background-color: white;
+        border: 0px;
+        padding: 0px;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+      }
+    }
+    .similarCont{
+        .menuOption{
+              cursor: pointer;
+              text-align: center;
+              padding: 0;
+              a{
+                text-decoration : none;
+                color: $red3;
+                font-size: 12px;
+                font-weight: 600;
+              }
+        }
+        .active{
+          border-bottom : 3px solid $red3 !important;
+        }
+        .menuOption{
+          border-bottom : 1px solid $white3;
+        }
+        .similarItem{
+          padding: 5px 15px;
+          margin-top : 35px;
+          .similarBody{
+            position: relative;
+            float: left;
+            border-bottom: 1px solid $white3;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            .titleItem{
+              font-weight: 600;
+            }
+            .titleParagraph{
+              color: $grey10;
+            }
+            .textParagraph{
+              font-size: 12px;
+              margin-top: 3px;
+            }
+          }
+        }
+    }
+    .searchCont{
+        .similarItem{
+          padding: 5px 15px;
+          margin-top : 35px;
+          .similarBody{
+            position: relative;
+            float: left;
+            border-bottom: 1px solid $white3;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            .titleItem{
+              font-weight: 600;
+            }
+            .titleParagraph{
+              color: $grey10;
+            }
+            .textParagraph{
+              font-size: 12px;
+              margin-top: 3px;
+            }
+          }
+        }
+    }
+
+    .tagList{
+      margin: 15px 0 15px 0;
+      .tagListItem{
+        i{
+          float: left;
+          margin-right: 5px;
+          margin-top: 3px;
+          cursor: pointer;
+          color: $grey5;
+        }
+      }
+    }
+
+    .tagItem{
+      .filterTitle{
+        font-size: 2.2rem;
+        border-bottom: 1px solid $gray;
+      }
+      .tagBook{
+        margin-top: 15px;
+        .titleParagraph{
+          font-weight: 600;
+        }
+        .titleBook{
+          color: $grey10;
+          border-bottom: 1px solid $gray;
+        }
+      }
+      .ui-select-container{
+        margin-top: 10px;
+        .select2-choices{
+          border: 0px;
+          background-image: none;
+        }
+        .ui-select-match li{
+          background-image: none!important;
+          background-color: $celestial !important;
+          color: $white !important;
+        }
+      }
+      .applicatedFilter{
+        float: left;
+        height: 20px;
+        background-color: $celestial;
+        color: $white;
+        border-radius: 3px;
+        line-height: 13px;
+        cursor: default;
+        font-size: 13px;
+        padding: 3px 5px 0px 0px;
+        margin: 3px 3px 3px 3px;
+        i{
+          float: left;
+          margin: 1px 5px 0px 3px;
+          color: grey;
+          cursor: pointer;
+        }
+        i:hover{
+          color: #464646;
+        }
+      }
+    }
+
+    .bookmarksItem{
+      .title{
+        text-align: center;
+        font-size: 2.2rem;
+        margin: 37px 10px 10px;
+        border-bottom: 0 !important;
+      }
+      .menuView{
+        position:relative;
+        float: left;
+        .menuOption{
+          cursor: pointer;
+          text-align: center;
+          a{
+            text-decoration : none;
+            color: $red3;
+            font-size: 12px;
+            font-weight: 600;
+          }
+        }
+        .active{
+          border-bottom : 3px solid $red3 !important;
+        }
+        .menuOption{
+          border-bottom : 1px solid $white3;
+        }
+      }
+      .addFolderTree{
+        /*position: absolute;
+        bottom: 55px;*/
+        margin-top: 20px;
+        padding-top: 5px;
+        border-top: 1px solid $white3;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      #treeBookmarks{
+        .fancytree-title{
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 80%;
+        }
+      }
+
+      #treeBookmarks, #listBookmarks{
+        margin-top: 60px;
+      }
+      #singleBookmark{
+        border-bottom: 2px solid $white3;
+        margin-top: 10px;
+        padding-bottom: 5px;
+        cursor: pointer;
+        #paragraphBookmark{
+          font-weight: bold;
+        }
+      }
+    }
+
+    .textLayer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      font-family: sans-serif;
+      color: $black;
+      margin: 0 auto;
+      div{
+        position: absolute;
+        color: transparent;
+
+      }
+      ::selection{
+        color: transparent;
+        background :  #ffcc89;
+      }
+      ::-moz-selection{
+        color: transparent;
+        background:  #ffcc89;
+      }
+
+    }
+
+    .select2-container-multi .select2-choices .select2-search-choice{
+      border: none !important;
+    }
+
+    .select2-container-multi .select2-choices, .select2-container .select2-choice{
+      background-image: none;
+      border: 1px solid #ccc !important;
+      height: 34px !important;
+      border-radius: 0px;
+    }
+
+    .select2-container .ui-select-dropdown .select2-disabled{
+      display: none;
+    }
+
+    .select2-dropdown-open .select2-choice{
+      background-color: white;
+      border: none;
+    }
+
+    .select2-container .select2-arrow{
+      background-image: none !important;
+      border: none !important;
+      background-color: white !important;
+    }
+
+    .popover{
+      border: 1px solid $grey6 !important;
+      box-shadow: none;
+    }
+
+    .popover.bottom>.arrow{
+      border-bottom-color : $grey6;
+    }
+
+    .select2-container-multi .select2-choices .select2-search-field input{
+      width: 100% !important;
+    }
+    .select2-container-active .select2-choice, .select2-container-active .select2-choices{
+      box-shadow: none;
+    }
+    .select2-drop-active{
+      border: 1px solid $grey6;
+      top: 100% !important;
+    }
+
+    .select2-drop{
+      box-shadow: none;
+    }
+
+    .select2-container-multi.select2-container-active .select2-choices{
+      box-shadow: none;
+    }
+
+    .newDesiderata .newDesiderata .leftSidebarThirdStep .select2-choices{
+      border: none !important;
+    }
+    .comments-container{
+      //margin: 0;
+      height: 100%;
+      min-height: 200px;
+      transform-origin: 0 0;
+      margin-top: 20px;
+      //margin-left: 15px;
+    }
+    .annotator-wrapper{
+      width: 100%;
+      position: relative;
+      float: left;
+    }
+    #bookText{
+      height: 80vh;
+    }
+
+    /*
+    ::-webkit-scrollbar, ::-webkit-scrollbar {
+        display: none;
+    }
+    */
+    #bookScrolling{
+      position:fixed;
+      height: 80vh;
+      -webkit-overflow-scrolling: auto;
+      overflow: scroll;
+      a{
+        cursor: pointer;
+      }
+    }
+
+
+    #pdfPage1cont{
+      book-annotator{
+        position: absolute;
+        top:0;
+        letter-spacing: 0;
+        transform-origin: 0 0;
+        //margin-top: 20px;
+        #bookText{
+          margin-top: 0px;
+          width: 100%;
+        }
+      }
+    }
+
+
+    .absSidebar{
+      position:fixed;
+      padding-top: 20px;
+      right:250px;
+      width:50%;
+      background-color:white;
+      height:100%;top:40px;
+      z-index:1000;
+      border-left:1px solid $white3;
+      border-bottom:1px solid $white3;
+      overflow: scroll;
+      h4{
+        font-size: 18px;
+      }
+      .bookTitle{
+        font-weight: bold;
+      }
+      .bookParagraph{
+        font-weight: 300;
+      }
+      .initialContentBook{
+        position: relative;
+        margin-bottom: 10px;
+        text-align: justify;
+        .dotLastRow{
+          background: $white;
+          bottom: 4px;
+          position: absolute;
+          right: 0;
+        }
+      }
+      a{
+        float: right;
+        color: $red;
+        text-decoration: none;
+        margin-right:5px;
+      }
+    }
+
+    .bookItem{
+      border-bottom: 1px solid $white3;
+      margin: 20px 5px;
+      padding-bottom: 10px;
+      .bookTitle{
+        font-weight: bold;
+      }
+      .bookParagraph{
+        font-weight: 300;
+      }
+      .initialContentBook{
+        position: relative;
+        max-height: 45px;
+        overflow: hidden;
+        text-align: justify;
+        .dotLastRow{
+          background: $white;
+          bottom: 4px;
+          position: absolute;
+          right: 0;
+        }
+      }
+      a{
+        float: right;
+        color: $red;
+        text-decoration: none;
+        margin-right:5px;
+        padding-right: 5px;
+        border-right : 1px solid $red;
+
+      }
+      .last-right{
+        border-right: none !important;
+      }
+      .left-maniglia{
+        height: 100%;
+        position: absolute;
+        width: 10px;
+        top: 0;
+        border-color: $red;
+        left: 0;
+        border-style: solid;
+        border-width: 1px 0 1px 1px;
+        margin-left: 5px;
+      }
+      .right-maniglia{
+        height: 100%;
+        position: absolute;
+        width: 10px;
+        top: 0;
+        border-color: $red;
+        right: 0;
+        border-style: solid;
+        border-width: 1px 1px 1px 0;
+        margin-right: 5px;
+      }
+    }
+
+    .modal-footer{
+      border: 0px;
+      .btn{
+        color: $red;
+        background-color: transparent;
+        border: 0px;
+      }
+    }
+
+    .modal-header{
+      border: 0px;
+      .btn{
+        float : right;
+        color: $red;
+        background-color: transparent;
+        border: 0px;
+      }
+    }
+
+    #popoverMap{
+      .popover{
+        width: 700px !important;
+        max-width: 900px !important;
+        height: 400px !important;
+        top: 0px !important;
+        background-color: $grey12 !important;
+        border: none !important;
+        .popover-content{
+          padding: 3px !important;
+          .mapSidebar{
+            position: relative;
+            float: right;
+          }
+        }
+      }
+      .popover.left>.arrow {
+        top: 20px;
+      }
+      .angular-google-map-container {
+        height: 392px;
+      }
+      #containerInformationsMarker{
+        float: left;
+        max-width: 250px;
+        height: 392px;
+        background-color: white;
+        overflow: scroll;
+        #singleMarker{
+          float: left;
+          padding-bottom: 10px;
+          border-bottom: 1px solid $grey12;
+          padding-top: 10px;
+          padding-left: 10px;
+          padding-right: 10px;
+          #titleMarker{
+            font-weight: bold;
+            float: left;
+            width: 100%;
+            cursor: pointer;
+          }
+          #subtitleMarker{
+            font-weight: 200;
+            float: left;
+            width: 100%;
+          }
+          #previewMarker{
+            max-height: 110px;
+            font-size: 13px;
+            overflow: hidden;
+            text-align: justify;
+            float: left;
+            width: 100%;
+          }
+          #readMarker{
+            float: left;
+            width: 100%;
+            a{
+              float: right;
+              text-decoration: none;
+              color: $red;
+              cursor: pointer;
+              margin-left: 5px;
+              padding-left: 5px;
+              border-left: 1px solid $red;
+              &.first{
+                border: none;
+              }
+            }
+          }
+        }
+        #singleMarker.active{
+          background-color: $grey12;
+        }
+      }
+    }
+
+    .pagination>li>a, .pagination>li>span{
+      color: $red3 !important;
+    }
+
+    .pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover{
+      color: $red3 !important;
+    }
+
+    .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{
+      background-color: $red3 !important;
+      border-color: $red3 !important;
+      color: #fff !important;
+    }
+    dir-pagination-controls{
+      width: 100%;
+      text-align: center;
+      margin: auto;
+      display: block;
+    }
+
+    .comments-line-container{
+      position: absolute;
+      right: 0px;
+    }
+    .side-comment{
+      .comment-form{
+        width: 100%
+      }
+      div{
+        position: relative;
+        float: right;
+        color: black;
+        div{
+            position: relative;
+            color: black;
+        }
+
+        .author-name{
+          max-width: 120px !important;
+          float: left;
+          text-align: left;
+        }
+        .date-comment{
+          width: auto !important;
+          margin-left: 5px !important;
+          padding: 0px !important;
+        }
+        .comment{
+          text-align: left;
+        }
+      }
+    }
+
+    input.ng-invalid-required.ng-touched{
+      border: 1px solid $red !important;
+    }
+
+    .epub-image, .epub-video, .epub-audio {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .highlight {
+        background-color: yellow;
+        opacity: 0.5;
+
+    }
+
+    .droplet{
+        width: 100%;
+        height: 300px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border: 2px dashed grey;
+    }
+
+    .preview{
+        img{
+            height: 300px;
+            width: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+    #refTitleBookDesiderata{
+        color: $red;
+    }
+
+    .droplet{
+        width: 100%;
+        height: 300px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        border: 2px dashed grey;
+        button{
+            width: 100%;
+            height: 40px !important;
+        }
+        img{
+            height: 300px;
+            width: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+    }
+
+
+    #uploadDesCover{
+        button{
+            width: 100%;
+            height: 40px !important;
+        }
+    }
+
+    .select2-results .select2-highlighted{
+        background-color: #fff !important;
+        color: #000 !important;
+    }
+
+    .select2-results .select2-highlighted:hover{
+        background-color: #eee !important;
+        color: #000 !important;
+    }
+
+    .containerRedirectToCart{
+        text-align: center;
+        margin-top: 100px;
+        input{
+            background-color: $red;
+            color: $white;
+            font-weight: bold;
+            border: none !important;
+            width: 90px;
+        }
+    }
+//}
+
+.hotSpot{
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  cursor: pointer;
+}
+.hotSpot.circle{
+  border-radius: 100%;
+}
+
+.floatLeft{
+    float: left !important;
+}
+
+.placeholder{
+    color: #999;
+}
+select{
+    option{
+        color: #000;
+    }
+}
+
+#pdfZoom{
+  padding: 0px;
+  #pdfImage{
+    margin-top: 20px !important;
+  }
+  book-annotator{
+    margin-top: 0px;
+  }
+  .comments-container{
+    margin-top: 0px;
+  }
+  .no-color{
+    background-color: transparent !important;
+    color: transparent !important;
+  }
+}
+
+.ui-select-choices{
+  background-color: transparent !important;
+  background-image: none !important;
+  position: relative !important;
+  right: 0px !important;
+  width: 100%;
+  overflow-y: scroll;
+  .ui-select-choices-group{
+    position: relative !important;
+    float: left !important;
+    width: 100% !important;
+    ul[role=listbox]{
+      position: relative !important;
+      width: 100% !important;
+      right: 0px !important;
+    }
+  }
+}
+
+book-annotator{
+  margin-top: 30px;
+}
+
+.noOverflow{
+  overflow: hidden !important;
+}

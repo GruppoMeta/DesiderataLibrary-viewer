@@ -1,0 +1,177 @@
+header(class="registrationHeader")
+    nav(class="navbar navbar-default")
+       div(class="fluid")
+
+    div
+        div(class="logo noDisplayTel noDisplayTablet")
+            img(src="img/desiderata-library-logo.png")
+div(class="row registration registrationWithoutPadding")
+    div(class="col-xs-12 col-sm-12 col-md-12")
+        div(class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2")
+            div(id="titleRegistration")
+                |Registrazione
+            div(id="subtitleRegistration")
+                |I campi contrassegnati con * sono obbligatori
+            div(ng-if="errorFlag" class="errorMessage ng-scope" style="text-align: center; margin-top: 20px;")
+              i(class="fa fa-exclamation fa-2x" style="font-size: 32px;border: 2px solid #ffbf00;border-radius: 30px;background-color: #fff;color: #ffbf00;width: 40px;height: 40px;text-align: center;padding-top: 3px;margin-right: 7px;")
+              |{{errorMsg}}
+    div(class="col-xs-12 col-sm-12 col-md-12 containerRegistration" style="text-align: center;" ng-if="okFlag")
+        i(class="fa fa-5x fa-check")
+        div(style="font-size: 23px; margin-top: 30px;")
+            |Registrazione avvenuta con successo
+        div(class="col-xs-12 confirmRegistration")
+            input(type="button" id="submit" value="Torna al login" style="max-width: 180px !important;" ng-click="goToLogin()")
+    form(ng-submit="registrationSubmit()" ng-if="!okFlag")
+        div(class="col-xs-12 containerRegistration")
+            div(class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2")
+                div(class="form-group inputRegistration col-xs-12 col-md-4 col-sm-6")
+                    label
+                        |Nome *
+                    input(type="text" class="form-control" ng-model="registration.name" placeholder="Inserisci il tuo nome")
+                div(class="form-group inputRegistration col-xs-12 col-md-4 col-sm-6")
+                    label
+                        |Cognome *
+                    input(type="text" class="form-control" ng-model="registration.surname" placeholder="Inserisci il tuo cognome")
+                div(class="form-group inputRegistration col-xs-12 col-md-4 col-sm-6")
+                    label
+                        |Email *
+                    input(type="email" class="form-control" ng-model="registration.email" placeholder="Inserisci la tua mail")
+                div(class="form-group inputRegistration col-xs-12 col-md-4 col-sm-6")
+                    label
+                        |Username *
+                    input(type="text" class="form-control" ng-model="registration.username" placeholder="Inserisci il tuo username")
+                div(class="form-group inputRegistration col-xs-12 col-md-4 col-sm-6")
+                    label
+                        |Password *
+                    input(type="password" class="form-control" ng-model="registration.password" placeholder="Inserisci la tua password")
+                div(class="form-group inputRegistration col-xs-12 col-md-4 col-sm-6")
+                    label
+                        |Ripeti password *
+                    input(type="password" class="form-control" ng-model="registration.confirmPassword" placeholder="Conferma la tua password")
+                div(id ="years" class="form-group inputRegistration col-xs-4 col-md-1 col-sm-3")
+                    label
+                        |Età
+                    input(type="text" class="form-control" ng-model="registration.years" placeholder="Inserisci la tua età")
+                div(id="city" class="form-group inputRegistration col-xs-8 col-md-2 col-sm-6")
+                    label
+                        |Città
+                    input(type="text" class="form-control" ng-model="registration.city" placeholder="Inserisci la tua città")
+                div(class="form-group inputRegistration col-xs-12 col-md-3 col-sm-6")
+                    label
+                        |Interessi
+                    select(class="form-control" ng-model="registration.interests" ng-class="{'placeholder' : placeholderI}" ng-init="placeholderI = true" ng-change="placeholderI = false")
+                        option(value="" disabled selected)
+                            | Seleziona un interesse
+                        //option(value="Nessuno")
+                            //| Nessuno
+                        option(value="Affari e finanza")
+                            | Affari e finanza
+                        option(value="Ambiente")
+                            | Ambiente
+                        option(value="Animali")
+                            | Animali
+                        option(value="Arte e cultura")
+                            | Arte e cultura
+                        option(value="Auto e trasporti")
+                            | Auto e trasporti
+                        option(value="Bellezza e stile")
+                            | Bellezza e stile
+                        option(value="Casa e giardino")
+                            | Casa e giardino
+                        option(value="Computer e Internet")
+                            | Computer e Internet
+                        option(value="Elettronica di consumo")
+                            | Elettronica di consumo
+                        option(value="Folclore")
+                            | Folclore
+                        option(value="Fotografia")
+                            | Fotografia
+                        option(value="Giochi e passatempi")
+                            | Giochi e passatempi
+                        option(value="Gravidanza e genitori")
+                            | Gravidanza e genitori
+                        option(value="Mangiare e bere")
+                            | Mangiare e bere
+                        option(value="Matematica e scienze")
+                            | Matematica e scienze
+                        option(value="Musica e intrattenimento")
+                            | Musica e intrattenimento
+                        option(value="Natura")
+                            | Natura
+                        option(value="Notizie ed eventi")
+                            | Notizie ed eventi
+                        option(value="Politica e governo")
+                            | Politica e governo
+                        option(value="Relazioni e famiglia")
+                            | Relazioni e famiglia
+                        option(value="Salute")
+                            | Salute
+                        option(value="Scienze sociali")
+                            | Scienze sociali
+                        option(value="Scuola ed educazione")
+                            | Scuola ed educazione
+                        option(value="Società e culture")
+                            | Società e culture
+                        option(value="Sport")
+                            | Sport
+                        option(value="Territorio: Sardegna")
+                            | Territorio: Sardegna
+                        option(value="Turismo e viaggi")
+                            | Turismo e viaggi
+                div(class="form-group inputRegistration col-xs-12 col-md-3 col-sm-6")
+                    label
+                        |Titolo di studio
+                    select(class="form-control" ng-model="registration.qualification" ng-class="{'placeholder' : placeholderT}" ng-init="placeholderT = true" ng-change="placeholderT = false")
+                        option(value="" disabled selected) Seleziona il tuo titolo
+                        optgroup(label='Diploma')
+                            option(value='Magistrale') Magistrale
+                            option(value='Classico') Classico
+                            option(value='Scientifico') Scientifico
+                            option(value='Tecnico') Tecnico
+                            option(value='Artistico ed arte applicata') Artistico ed arte applicata
+                            option(value='Disegno industriale') Disegno industriale
+                            option(value='Linguistico') Linguistico
+                            option(value='Turistico ed alberghiero') Turistico ed alberghiero
+                            option(value='Musicale e coreutica') Musicale e coreutica
+                        optgroup(label='Laurea')
+                            option(value='Agronomo e forestale') Agronomo e forestale
+                            option(value='Architetto') Architetto
+                            option(value='Assistente sanitario') Assistente sanitario
+                            option(value='Assistente sociale') Assistente sociale
+                            option(value='Biologia e biotecnologie') Biologia e biotecnologie
+                            option(value='Chimico') Chimico
+                            option(value='Restauro e conservazione beni culturali') Restauro e conservazione beni culturali
+                            option(value='Alimentazione  ') Alimentazione
+                            option(value='Psicologia  ') Psicologia
+                            option(value='Economia, contabilità e finanza') Economia, contabilità e finanza
+                            option(value='Geologo') Geologo
+                            option(value='Geometra laureato') Geometra laureato
+                            option(value='Medico infermieristico') Medico infermieristico
+                            option(value='Ingegneria civile ed ambientale') Ingegneria civile ed ambientale
+                            option(value='Ingegnere dell informazione ') Ingegnere dell'informazione
+                            option(value='Ingegnere industriale ') Ingegnere industriale
+                            option(value='Altro') Altro
+                div(class="form-group inputRegistration col-xs-12 col-md-3 col-sm-6")
+                    label
+                        |Professione
+                    select(class="form-control" ng-model="registration.profession" ng-class="{'placeholder' : placeholderP}" ng-init="placeholderP = true" ng-change="placeholderP = false")
+                        option(value="" selected disabled) Seleziona la tua professione
+                        optgroup(label='Settore Scientifico')
+                            option(value='Scienze matematiche, fisiche, naturali') Scienze matematiche, fisiche, naturali
+                            option(value='Scienze della vita') Scienze della vita
+                            option(value='Scienze motorie') Scienze motorie
+                        optgroup(label='Settore Sanitario')
+                            option(value='Scienze della salute') Scienze della salute
+                        optgroup(label='Settore Economico')
+                            option(value='Area delle scienze economiche e gestionali') Area delle scienze economiche e gestionali
+                        optgroup(label='settore Giuridico e Politico-Sociale')
+                            option(value='Scienze giuridiche') Scienze giuridiche
+                            option(value='Scienze sociali') Scienze sociali
+                        optgroup(label='Settore Umanistico')
+                            option(value='Discipline linguistiche, letterarie e documentali') Discipline linguistiche, letterarie e documentali
+                            option(value='Discipline culturali e artistiche') Discipline culturali e artistiche
+                            option(value='Educazione e insegnamento') Educazione e insegnamento
+        div(class="col-xs-12 confirmRegistration")
+            input(type="submit" id="submit" value="Conferma" style="width: 130px !important; max-width: 140px !important;")
+        div(class="col-xs-12 confirmRegistration")
+            input(type="button" id="submit" class="noDisplayPc returnToLogin" value="Torna al login" style="background-color: #A0A0A0; width: 130px; max-width: 140px !important;" ng-click="goToLogin()")

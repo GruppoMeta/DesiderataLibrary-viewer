@@ -1,0 +1,77 @@
+header
+    nav(class="navbar navbar-default")
+        span(style="color:#fff;position:absolute;top:15px;left:250px"  class="yesDisplayPc noDisplayTel noDisplayTablet")
+            |{{user.loginId}}
+        div(class="navbar-header-center navbar-header")
+            button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#headerDesiderata")
+                span(class="sr-only")
+                    |Toggle navigation
+                span(class="icon-bar")
+                span(class="icon-bar")
+                span(class="icon-bar")
+            div(class="navbar-brand noDisplayPc yesDisplayTel yesDisplayTablet")
+                div( ng-click="goBack()" class="backContainer")
+                    i(class="fa fa-chevron-left" )
+         div(class="fluid collapse navbar-collapse" id="headerDesiderata")
+            ul(class="nav navbar-nav")
+                li
+                    div(class="username yesDisplayTablet yesDisplayTel" style="float:left;color: #fff;width:100%;padding-left:10px; display: none")
+                        |{{user.loginId}}
+                li
+                    div(class="cartNavbar" ui-sref="cart" ng-show="emptyCart == false")
+                        i(class="fa fa-2x fa-shopping-cart")
+                li
+                    div(class="title")
+                        a(ui-sref="help" class="elementInCollapseNavbar") Assistenza
+                li
+                    div(class="title")
+                        a(ui-sref="profile" class="elementInCollapseNavbar") Profilo
+                li(id="categoryInMenu")
+                    div(class="title")
+                        a(ui-sref="collection" class="elementInCollapseNavbar") Catalogo generale
+                li
+                    div(class="title")
+                        a(ui-sref="dashboard" class="elementInCollapseNavbar") La mia libreria
+                li
+                    div(class="title")
+                        a(ui-sref="logout" class="elementInCollapseNavbar") Esci
+    div
+       div(class="logo noDisplayTel noDisplayTablet")
+           a(ui-sref="dashboard"): img(src="img/desiderata-library-logo.png")
+   div(class="page" style="padding-top: 50px !important")
+       div(id="mapPage" class="col-md-12 col-xs-12 col-sm-12 offlineError" style="padding: 0px; width: auto; margin-top: 50px;" ng-show="readingOffline")
+          |Questa funzionalità è disponibile solo in modalità online.
+       div(id="mapPage" class="col-md-12 col-xs-12 col-sm-12" style="padding: 0px;" ng-show="!readingOffline")
+         div(id="containerInformationsMarker")
+             div(style="width: 100%; margin-bottom: 25px;")
+                i(class="fa fa-times-circle" style="float: right; cursor: pointer;" ng-click="listInformationsMarker(false)")
+             div(id="singleMarker" ng-repeat="marker in informationsMarker" ng-class="{active: marker.active == true}")
+                 div(id="titleMarker" ui-sref="book({idBook:{{marker.idBook}}, idPar:{{marker.idPar}}})")
+                     div
+                       |{{marker.title}}
+                     i(style="color:green; margin-top: -17px; float:right" ng-show="marker.inLibrary" class="fa fa-check-square")
+                     i(style="color:#FFBF00; margin-top: -17px; float:right" ng-show="!marker.inLibrary" class="fa fa-usd ng-hide")
+                 div(id="subtitleMarker")
+                     |{{marker.subtitle}}
+                 div(id="previewMarker")
+                     |{{marker.preview}}
+                 div(id="readMarker")
+                     div(class="dropdown dropdownSimilar" style="float: right !important; margin-left: 5px !important;")
+                       button(class="btn btn-default dropdown-toggle buttonSimilar" id="buttonSimilar{{$index}}" type="button" data-toggle="dropdown" ng-click="openDropdown($index)")
+                           |Aggiungi a desiderata
+                           span(class="caret")
+                       ul(class="dropdown-menu" id="{{$index}}" style="margin-left: -40px")
+                           li(ng-repeat="desiderata in desiderataList")
+                               a(class="mapDropdown" ng-click="openConfirmModal(desiderata.title, desiderata.id, marker.idBook, marker.idPar )")
+                                   |{{desiderata.title}}
+                     //a(ui-sref="book({idBook:{{marker.idBook}}, idPar:{{marker.idPar}}})")
+                       //|Vai a
+                     a(class='first' style="border-right: 1px solid #b12031 !important; padding-right: 5px !important;" ng-click="openReadingModal(marker)")
+                         |Leggi
+
+         div(class="googleMap")
+            div(style="width: 100%; position: absolute; z-index: 1;")
+              i(class="fa fa-2x fa-align-justify" style="float:right; margin-right: 40px; margin-top: 25px; cursor: pointer;" ng-click="listInformationsMarker(true)")
+             ui-gmap-google-map(center='map.center' zoom='map.zoom' options="options" control="map.control" events="map.events")
+                 ui-gmap-markers(models="markers" coords="'coords'" options="'options'" events="'events'" idkey="id")
+                 ui-gmap-window(coords="infoWindow.coords" templateUrl="infoWindow.templateUrl" show="windowOptions.visible" options="infoWindow")

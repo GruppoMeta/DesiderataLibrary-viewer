@@ -1,0 +1,346 @@
+header
+    nav(class="navbar navbar-default")
+        span(style="color:#fff;position:absolute;top:15px;left:250px" class="yesDisplayPc noDisplayTel noDisplayTablet")
+            |{{user.loginId}}
+        div(class="navbar-header")
+            button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#headerDesiderata")
+                span(class="sr-only")
+                    |Toggle navigation
+                span(class="icon-bar")
+                span(class="icon-bar")
+                span(class="icon-bar")
+            div(class="navbar-brand noDisplayPc yesDisplayTel yesDisplayTablet")
+                |La mia libreria
+        div(class="fluid collapse navbar-collapse" id="headerDesiderata")
+            ul(class="nav navbar-nav")
+                li
+                    div(class="username yesDisplayTablet yesDisplayTel" style="float:left;color: #fff;width:100%;padding-left:10px; display: none")
+                        |{{user.loginId}}
+                li
+                    div(class="cartNavbar" ui-sref="cart" ng-show="emptyCart == false")
+                        i(class="fa fa-2x fa-shopping-cart")
+                li
+                    div(class="title")
+                        a(ui-sref="help" class="elementInCollapseNavbar") Assistenza
+                li
+                    div(class="title")
+                        a(ui-sref="profile" class="elementInCollapseNavbar") Profilo
+                li(id="categoryInMenu")
+                    div(class="title")
+                        a(ui-sref="collection" class="elementInCollapseNavbar") Catalogo generale
+                li
+                    div(class="title")
+                        a(ui-sref="dashboard" class="elementInCollapseNavbar") La mia libreria
+                    div(class="active")
+                        div(class="triangle")
+                li
+                    div(class="title")
+                        a(ui-sref="logout" class="elementInCollapseNavbar") Esci
+    div
+        div(class="logo noDisplayTel noDisplayTablet")
+            a(ui-sref="dashboard"): img(src="img/desiderata-library-logo.png")
+div(class="options")
+    div(class="row")
+        div(class="col-xs-5 col-xs-offset-1 col-sm-8 col-sm-offset-1 col-md-offset-2 col-md-8")
+            div(class="form-group")
+                div(class="row")
+                    div(class="col-xs-12 col-sm-4 col-md-4" ng-if="tab == true")
+                        div(class="inner-addon right-addon" ng-show="newDesiderata == false")
+                            i(class="glyphicon glyphicon-search")
+                            input(type="text" class="form-control" placeholder="Cerca titolo" ng-model="search.title" )
+                    div(class="col-xs-12 col-sm-4 col-md-4 col-md-offset-4" ng-if="tab == false")
+                        div(class="inner-addon right-addon" ng-show="newDesiderata == false")
+                            i(class="glyphicon glyphicon-search")
+                            input(type="text" class="form-control" placeholder="Cerca titolo" ng-model="search.title" ng-change="findDesiderata()" )
+                    div(class="col-sm-4 col-md-4 noDisplayTel" ng-class="{'noDisplayTablet': tab == false}")
+                        ui-select(theme="select2" multiple ng-model="search.author" tagging="" on-select="" tagging-label="" ng-if="tab == true")
+                          ui-select-match(placeholder="Cerca autore") {{$item.value}}
+                          ui-select-choices( refresh="" refresh-delay="" repeat="elem in authors | filter:$select.search") {{elem.value}}
+                    div(class="col-sm-4 col-md-4 noDisplayTel" ng-class="{'noDisplayTablet': tab == false}")
+                      ui-select(theme="select2" single ng-model="search.publisher" search-enabled="false" tagging="" on-select="" tagging-label="" ng-if="tab == true")
+                        ui-select-match(placeholder="Scegli editore" ) {{$select.selected.value}}
+                        ui-select-choices(refresh="" refresh-delay="" repeat="elem in publishers" ui-disable-choice="elem.key == $select.selected.key") {{elem.value}}
+        div(class="col-xs-6 col-sm-3 col-md-2 icons")
+                div(class="col-xs-offset-2 col-xs-5 col-sm-6 col-sm-offset-0 col-md-5 col-md-offset-2")
+                    a(title="Libreria")
+                        img(src="img/catalogo-desiderata.png" ng-click="lib()")
+                        div(class="activeRed" ng-show="tab == true")
+                div(class="col-xs-5 col-sm-6 col-md-5")
+                    a(title="DBook")
+                        img(src="img/desiderata-menu.png" ng-click="fav()")
+                        div(class="activeRed" ng-show="tab == false")
+
+
+div(class="container books" ng-show="tab == true && newDesiderata == false")
+    div(class="row")
+        div(class="col-xs-6 col-sm-3 col-md-2 book" pagination-id="libraryList" dir-paginate="obj in bookList | filter:customFilter() | itemsPerPage : 12" current-page = "$root.currentPageLib")
+            a
+                div(class="fav")
+                    div(style="position:absolute; top:0px; z-index: 50;" ng-class="{'rightPositionPdf': '{{obj.type}}' == 'PublicationPdf', 'rightPositionBook': '{{obj.type}}' == 'Publication' }" class="noDisplayPc yesDisplayTel yesDisplayTablet")
+                        div(ng-show="isMobile && IsDownloaded(obj.id)" )
+                            i(class="fa fa-cog fa-2x" style="color:#b12031" ng-click="openSettingsModal(obj.id)")
+                    div(style="position: absolute; left: 0px; right: 0px; top: 125px; bottom: 0px; z-index: 10;" id="containerCloudProgress{{obj.id}}" class=" noDisplayPc yesDisplayTel yesDisplayTablet")
+                        div(ng-show="isMobile" ng-class="{'widthPdf': '{{obj.type}}' == 'PublicationPdf', 'widthBook': '{{obj.type}}' == 'Publication' }" ng-click="downloadZip( obj.type, obj.id, obj.startId, 0 )")
+                            i(class="fa" ng-class="{'fa-cloud-download' : IsDownloading(obj.id) == false }" style="color: white; margin-right: 3px;")
+                            span(style="color:white; font-size: 10px;" ng-class="{'noDisplayTablet' : IsDownloaded(obj.id) == false }")
+                              |Leggi offline
+                            span(style="color:white; font-size: 10px;" ng-class="{'noDisplayTablet' : IsDownloading(obj.id) == true }")
+                              |Scarica libro
+                            div(class="progress" id="progressContainerNumber{{obj.id}}" ng-class="{'hidden' : IsDownloaded(obj.id) == true }")
+                              div(class="progress-bar progress-bar-success progress-bar-striped" id="progressBarNumber{{obj.id}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%")
+                    div(ng-show="isMobile" style="position: absolute; left: 0px; right: 0px; top: 151px; bottom: 0px; z-index: 10;" id="containerCloudProgress{{obj.id}}" class=" noDisplayPc yesDisplayTel yesDisplayTablet")
+                        div(ng-class="{'widthPdf': '{{obj.type}}' == 'PublicationPdf', 'widthBook': '{{obj.type}}' == 'Publication' }" ng-click="downloadZip( obj.type, obj.id, obj.startId, 1 )")
+                            i(class="fa" ng-class="{'fa-file-pdf-o': '{{obj.type}}' == 'PublicationPdf', 'fa-book': '{{obj.type}}' == 'Publication' }" style="color: white; margin-right: 3px;")
+                            span(style="color:white; font-size: 10px;")
+                              |Leggi online
+                    a(ng-if="obj.type != 'PublicationPdf'" ng-click="downloadZip( obj.type, obj.id, obj.startId, 0 )" ng-class="{'noDisplayTablet' : isMobile}")
+                      img(ng-src="{{obj.coverBig}}" id="coverBigImage{{obj.id}}" class="coverBigImage maxWidthBook")
+                      //div(style="position: absolute; left: 65px; right: 0px; bottom: 5px;" class=" noDisplayPc yesDisplayTel yesDisplayTablet")
+                          //span(class="fa-stack fa-lg" style="background-color: white; border-radius: 40px; border: 1px solid #777777;")
+                              //i(class="fa fa-stack-2x fa-trash" style="color: #777777; font-size: 23px; padding: 6px; padding-left: 7px; cursor: pointer;")
+                    a(ng-if="obj.type != 'PublicationPdf' && isMobile"  class="noDisplayPc yesDisplayTablet")
+                      img(ng-src="{{obj.coverBig}}" id="coverBigImage{{obj.id}}" class="coverBigImage maxWidthBook")
+                      //div(style="position: absolute; left: 65px; right: 0px; bottom: 5px;" class=" noDisplayPc yesDisplayTel yesDisplayTablet")
+                          //span(class="fa-stack fa-lg" style="background-color: white; border-radius: 40px; border: 1px solid #777777;")
+                              //i(class="fa fa-stack-2x fa-trash" style="color: #777777; font-size: 23px; padding: 6px; padding-left: 7px; cursor: pointer;")
+
+                    a(ng-if="obj.type == 'PublicationPdf'" ng-click="downloadZip( obj.type, obj.id, obj.startId, 0 )" ng-class="{'noDisplayTablet' : isMobile}")
+                      img(ng-src="{{obj.coverBig}}" id="coverBigImage{{obj.id}}" class="coverBigImage maxWidthPdf")
+                      //div(style="position: absolute; left: 0px; right: 0px; top: 55px; bottom: 0px; z-index: 10;" class=" noDisplayPc yesDisplayTel yesDisplayTablet")
+                              //i(class="fa fa-5x fa-cloud-download" style="color: rgb(177, 32, 49);" ng-click="downloadZip( obj.id )")
+                      //div(style="position: absolute; left: 65px; right: 0px; bottom: 5px;" class=" noDisplayPc yesDisplayTel yesDisplayTablet")
+                          //span(class="fa-stack fa-lg" style="background-color: white; border-radius: 40px; border: 1px solid #777777;")
+                              //i(class="fa fa-stack-2x fa-trash" style="color: #777777; font-size: 23px; padding: 6px; padding-left: 7px; cursor: pointer;")
+                    a(ng-if="obj.type == 'PublicationPdf' && isMobile" class="noDisplayPc yesDisplayTablet")
+                      img(ng-src="{{obj.coverBig}}" id="coverBigImage{{obj.id}}" class="coverBigImage maxWidthPdf")
+                      //div(style="position: absolute; left: 0px; right: 0px; top: 55px; bottom: 0px; z-index: 10;" class=" noDisplayPc yesDisplayTel yesDisplayTablet")
+                              //i(class="fa fa-5x fa-cloud-download" style="color: rgb(177, 32, 49);" ng-click="downloadZip( obj.id )")
+                      //div(style="position: absolute; left: 65px; right: 0px; bottom: 5px;" class=" noDisplayPc yesDisplayTel yesDisplayTablet")
+                          //span(class="fa-stack fa-lg" style="background-color: white; border-radius: 40px; border: 1px solid #777777;")
+                              //i(class="fa fa-stack-2x fa-trash" style="color: #777777; font-size: 23px; padding: 6px; padding-left: 7px; cursor: pointer;")
+
+            div(class="title")
+                | "{{obj.title}}"
+            div(class="author")
+                | {{obj.author[0]}}
+            div(class="publisher noDisplayTel noDisplayTablet")
+                | {{obj.publisher}}
+    <dir-pagination-controls pagination-id="libraryList" ></dir-pagination-controls>
+
+div(class="container books" ng-show="tab == false && newDesiderata == false")
+    div(class="row")
+        div(class="col-xs-6 col-sm-3 col-md-2 book" pagination-id="desList" dir-paginate="obj in $root.desiderataList | itemsPerPage : 11" current-page = "$root.currentPageDes")
+            a
+                div(class="fav")
+                    i(class="fa fa-pencil noDisplayTablet" ng-click="modifyDes(obj.id)")
+                    //i(class="fa fa-times" ng-click="openCancelModal(obj)")
+                    a( ng-click="goToDes(obj.id)")
+                      img(ng-src="{{obj.cover}}" id="coverBigImage{{obj.id}}" class="coverBigImage")
+                    div(class="num" ng-if="obj.count == 1")
+                        |{{obj.count}} testo
+                    div(class="num" ng-if="obj.count > 1")
+                        |{{obj.count}} testi
+                    div(style="position: absolute; left: 85px; right: 0px; bottom: 30px;")
+                        span(class="fa-stack fa-lg noDisplayTablet" style="background-color: white; border-radius: 40px; border: 1px solid #777777;" ng-click="openCancelModal(obj)")
+                            i(class="fa fa-stack-2x fa-trash" style="color: #777777; font-size: 23px; padding: 6px; padding-left: 7px;")
+            div(class="author")
+                |{{obj.title}}
+            div(class="title")
+                |{{obj.dateToShow}}
+        div(class="col-xs-6 col-sm-3 col-md-2 book addDesiderata")
+            a(ng-click="")
+                div(class="fav")
+                    img(src="img/desiderata-aggiungi-collezione.png" class="add" ng-click="desiderata()")
+                    div(class="text")
+                        |Aggiungi desiderata
+    <dir-pagination-controls pagination-id="desList" ></dir-pagination-controls>
+
+
+div(class="containerNewDesiderata newDesiderata" ng-show="newDesiderata == true")
+    div(class="row")
+        div(class="col-md-4 leftTitle")
+            h3
+                |Nuova desiderata
+        div(class="col-md-4 steps")
+            div(class="stepNewDesiderata" ng-class="{'stepSelected' : stepNewDesiderata == 0}")
+                |1
+            div(class="betweenSteps")
+            div(class="stepNewDesiderata" ng-class="{'stepSelected' : stepNewDesiderata == 1}")
+                |2
+            div(class="betweenSteps")
+            div(class="stepNewDesiderata" ng-class="{'stepSelected' : stepNewDesiderata == 2}")
+                |3
+        div(class="col-md-4 rightButton")
+            button(class="confirm btn btn-default" ng-click="nextStep()") Conferma
+            button(class="cancel btn btn-default" ng-click="previousStep()") Annulla
+    div(class="row newDesiderata firstStep" ng-show="stepNewDesiderata == 0")
+        div(class="containerFirstStep")
+            input(id="nameNewDesiderata" type="text" class="form-control" placeholder="Inserisci il nome" ng-model="nameNewDesiderata" required)
+            form(name="uploadForm" id="uploadDesCover")
+                div( class="droplet")
+                    <img ng-show="myForm.file.$valid" ngf-background="picFile">
+                button(class="confirm btn btn-default" ng-click="maskInput()") Scegli Cover
+                //<button ng-click="uploadPic(picFile)">Submit</button>
+                <input id="trueInput" style="display:none" type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB">
+
+
+
+
+    div(class="row newDesiderata secondStep" ng-show="stepNewDesiderata == 1")
+        div(class="col-md-3 leftSidebarThirdStep")
+            div(class="col-md-12")
+                div(class="col-md-2")
+                    h3
+                        |1
+                div(class="col-md-10")
+                    div(class="col-md-9 subLeftSidebar")
+                        |{{nameNewDesiderata}}
+                    div(class="col-md-3")
+                        a(href="" ng-click="modifyContentThirdStep(0)")
+                            |Modifica
+        div(class="containerSecondStep")
+           div(class="row")
+               label(for="Parole chiave") Parole chiave
+           div(class="row")
+               ui-select(theme="select2" multiple ng-model="TK.keywordArray" tagging="addNewKeyword" on-select="selectKeyWord($item)" tagging-label="(nuovo)")
+                   ui-select-match(placeholder="Select keyword") {{$item.text}}
+                   ui-select-choices( refresh="getKeywords($select.search)" refresh-delay="0" repeat="elem in availableKeywords | filter:$select.search") {{elem.text}}
+           div(class="row")
+               label(for="Taggatura ontologica") Taggatura ontologica
+           div(class="row")
+               ui-select(theme="select2" multiple ng-model="TK.tagsArray" )
+                   ui-select-match(placeholder="Select tag") {{$item.text}}
+                   ui-select-choices( refresh="getTags($select.search)" refresh-delay="0" repeat="elem in availableTags | filter:$select.search") {{elem.text}}
+
+    div(class="row newDesiderata thirdStep" ng-show="stepNewDesiderata == 2")
+        div(class="col-md-3 leftSidebarThirdStep")
+            div(class="col-md-12")
+                div(class="col-md-2")
+                    h3
+                        |1
+                div(class="col-md-10")
+                    div(class="col-md-9 subLeftSidebar")
+                        |{{nameNewDesiderata}}
+                    div(class="col-md-3")
+                        a(href="" ng-click="modifyContentThirdStep(0)")
+                            |Modifica
+            div(class="col-md-12")
+                div(class="col-md-2")
+                    h3
+                        |2
+                div(class="col-md-10")
+                    div(class="col-md-9")
+                        div(class="row")
+                            label(for="Parole chiave" class="labelThirdStep") Parole chiave
+                        div(class="row")
+                            ui-select(theme="select2" multiple ng-model="TK.keywordArray" on-select="changeSelectedKeyWord($item)" ng-disabled="true" on-remove="deleteKeyWord($item)")
+                                ui-select-match() {{$item.text}}
+                                ui-select-choices( repeat="elem in availableKeywords | filter:$select.search") {{elem}}
+                    div(class="col-md-3")
+                        a(href="" ng-click="modifyContentThirdStep(1)")
+                            |Modifica
+                    div(class="col-md-12 tagThirdStep")
+                        div(class="row")
+                            label(for="Taggatura ontologica" class="labelThirdStep") Taggatura ontologica
+                        div(class="row")
+                            ui-select(theme="select2" multiple ng-model="TK.tagsArray" on-select="changeSelectedTag($item)" ng-disabled="true" on-remove="deleteTag($item)")
+                                ui-select-match() {{$item.text}}
+                                ui-select-choices( repeat="elem in availableTags | filter:$select.search") {{elem.text}}
+            div(class="col-md-12")
+                div(class="col-md-2")
+                    h3
+                        |3
+                div(class="col-md-10 selectedTests")
+                    div(class="col-md-12")
+                        div(class="col-md-12 selectedTestsTitle")
+                            |Testi selezionati
+                            div(id="sortable")
+                                div(class="col-md-12" ng-repeat="obj in chosenText")
+                                    div()
+                                        div(class="left-maniglia")
+                                        div(class="right-maniglia")
+                                        h5(class="bookTitle")
+                                            |{{obj.title}}
+                                        i(class="fa fa-check-square" style="color:green; margin-top: -25px; float:right" ng-show="{{obj.inLibrary}}")
+                                        i(class="fa fa-usd" style="color:#FFBF00; margin-top: -25px; float:right" ng-show="{{!obj.inLibrary}}")
+                                    h5(class="bookParagraph")
+                                        |{{obj.subtitle}}
+                                    p(class="initialContentBook")
+                                        span
+                                            |{{obj.preview | limitTo: 30}}...
+                                    a(ng-click="dropText($index)" style="cursor:pointer")
+                                        |Elimina
+                                    a( class="selectedTestActions" ng-show="obj.inLibrary" style="cursor:pointer" ng-click="openReadingModal(obj)")
+                                        |Leggi
+                                    a( class="selectedTestActions" ng-show="!obj.inLibrary" style="cursor:pointer" ng-click="addToCart(obj)")
+                                        |Acquista
+                                    //a( class="selectedTestActions" ng-show="!obj.inLibrary")
+                                        //|Sblocca
+
+        div(class="col-md-9 rightThirdStep")
+            div(class="col-md-2")
+                h4
+                    |Ricerca
+            div(class="col-md-12")
+                div(class="inner-addon right-addon")
+                    i(class="glyphicon glyphicon-search")
+                    input(type="text" class="form-control" placeholder="Search" ng-model="searchingText" ng-change="searchTexts()")
+            div(class="col-md-3" )
+                h5(style="font-size:17")
+                    |Raffina Ricerca
+                div(class="tagList")
+                    div(class="tagListItem" ng-repeat="obj in chosenArgs") {{obj}}
+                        i(class="fa fa-minus-square" ng-click="dropArgs($index)")
+                //h5(style="font-weight:700")
+                    //|Argomenti
+                div(class="tagList")
+                    div(class="tagListItem" ng-repeat="obj in desiderataArgs" ng-if="obj.number != 0")
+                        i(class="fa fa-plus-square" ng-click="chooseArgs($index)")
+                        div(style="padding-left: 20px;") {{obj.label}} ({{obj.number}})
+            div(class="col-md-9" )
+                div(class="col-md-12" ng-repeat="obj in desiderataText")
+                    div()
+                        h5(class="bookTitle")
+                            |{{obj.title}}
+                        i(class="fa fa-check-square" style="color:green; margin-top: -25px; float:right" ng-show="{{obj.inLibrary}}")
+                        i(class="fa fa-usd" style="color:#FFBF00; margin-top: -25px; float:right" ng-show="{{!obj.inLibrary}}")
+                    h5(class="bookParagraph")
+                        |{{obj.subtitle}}
+                    p(class="initialContentBook")
+                        span
+                            |{{obj.preview}}
+                    a(ng-click="chooseText($index)" style="cursor:pointer" )
+                        |Aggiungi
+                div(class="col-md-10 col-md-offset-1" style="text-align:center")
+                  ul( ng-if='pages != 0' class='pagination' ng-show="desiderataText.length != 0")
+                    li( ng-class="{'disabled' : current == 0}")
+                      a( ng-click='searchItem(current-1)' aria-label="Previous")
+                        span(aria-hidden="true")&laquo;
+                    li( ng-show='current-2 >= 0')
+                      a( ng-click='searchItem(0)' ) 1
+                    li( ng-show='current-2 > 0')
+                      a ..
+                    li( ng-show='current-1 >= 0')
+                      a( ng-click='searchItem(current-1)' ){{current }}
+                    li( class='active')
+                      a {{current + 1 }}
+                    li( ng-show='current+1 <= pages-1' )
+                      a( ng-click='searchItem(current+1)' ) {{current+2}}
+                    li( ng-show='current+2 < pages')
+                      a ..
+                    li( ng-show='pages > current' )
+                      a( ng-click='searchItem(pages)' ) {{pages+1}}
+                    li( ng-class="{'disabled' : current == pages}")
+                      a( ng-click='searchItem(current+1)' aria-label="Next")
+                        span(aria-hidden="true")&raquo;
+
+                //nav( ng-show=" desiderataText.length != 0")
+                  //ul( class="pager" )
+                    //li(class="previous" ng-class="")
+                      //a( ng-click="" )
+                        //span( aria-hidden="true" ) &larr;
+                        //| Precedente
+                    //li(class="next" ng-class="")
+                      //a( ng-click="" )
+                        //| Successivo
+                        //span( aria-hidden="true" ) &rarr;*/

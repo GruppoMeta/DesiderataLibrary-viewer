@@ -1,0 +1,48 @@
+div(class="similarCont")
+  div(class="title") Testi simili
+  div(ng-show="readingOffline")
+      div(class="row offlineError")
+          |Questa funzionalità è disponibile solo in modalità online.
+  div(class="menuView col-xs-12 col-md-12" ng-show="!readingOffline")
+        div(class="col-xs-6 col-md-6 menuOption" ng-class="{active: isSimilar}" ng-click="isSimilar = true" ng-init=" isSimilar = true")
+            a(class="") Simili
+        div(class="col-xs-6 col-md-6 menuOption" ng-class="{active: !isSimilar}" ng-click="isSimilar = false")
+            a(class="") Consigliati
+  div(class="row similarItem" ng-show="similars.length && isSimilar && !readingOffline")
+      div(class="similarBody" ng-repeat="similar in similars")
+          div(class="titleItem") {{similar.title}}
+          div(class="titleParagraph") {{similar.subtitle}}
+          div(class="textParagraph") {{similar.preview | limitTo:30}}...
+          div(class="menu-control")
+              a(class="" ng-click="openReadingModal(similar)" style="float: left") Leggi
+              //a(class="last" ng-click="") Aggiungi a desiderata
+              div(class="dropdown dropdownSimilar")
+                  button(class="btn btn-default dropdown-toggle buttonSimilar" id="buttonSimilar{{$index}}" type="button" data-toggle="dropdown" ng-click="openDropdown($index)")
+                      |Aggiungi a desiderata
+                      span(class="caret")
+                  ul(class="dropdown-menu" id="sim{{$index}}" style="margin-left: -40px")
+                      li(ng-repeat="desiderata in desiderataList")
+                          a(ng-click="modifyDesiderata( desiderata.id, similar.id, similar.publicationId )" ng-show="displayDes(desiderata.id, similar.inDesiderata)")
+                              |{{desiderata.title}}
+  div(class="row similarItem" ng-show="!similars.length && isSimilar && !readingOffline")
+      div(class="similarBody")
+          div(class="titleItem") Nessun risultato
+  div(class="row similarItem" ng-show="suggested.length && !isSimilar && !readingOffline")
+      div(class="similarBody" ng-repeat="suggest in suggested")
+          div(class="titleItem") {{suggest.title}}
+          div(class="titleParagraph") {{suggest.subtitle}}
+          div(class="textParagraph") {{suggest.preview | limitTo:30}}...
+          div(class="menu-control")
+              a(class="" ng-click="openReadingModal(suggest)" style="float: left") Leggi
+              //a(class="last" ng-click="") Aggiungi a desiderata
+              div(class="dropdown dropdownSimilar")
+                  button(class="btn btn-default dropdown-toggle buttonSimilar" id="buttonSimilar{{$index}}" type="button" data-toggle="dropdown" ng-click="openDropdown($index)")
+                      |Aggiungi a desiderata
+                      span(class="caret")
+                  ul(class="dropdown-menu" id="sugg{{$index}}" style="margin-left: -40px")
+                      li(ng-repeat="desiderata in desiderataList")
+                          a(ng-click="modifyDesiderata( desiderata.id, suggest.id, suggest.publicationId )" ng-show="displayDes(desiderata.id, suggest.inDesiderata)")
+                              |{{desiderata.title}}
+  div(class="row similarItem" ng-show="!suggested.length && !isSimilar && !readingOffline")
+      div(class="similarBody")
+          div(class="titleItem") Nessun risultato

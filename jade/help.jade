@@ -1,0 +1,85 @@
+header
+    nav(class="navbar navbar-default")
+        span(style="color:#fff;position:absolute;top:15px;left:250px"  class="yesDisplayPc noDisplayTel noDisplayTablet")
+            |{{user.loginId}}
+        div(class="navbar-header")
+            button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#headerDesiderata")
+                span(class="sr-only")
+                    |Toggle navigation
+                span(class="icon-bar")
+                span(class="icon-bar")
+                span(class="icon-bar")
+            div(class="navbar-brand noDisplayPc yesDisplayTel yesDisplayTablet")
+                |Assistenza
+        div(class="fluid collapse navbar-collapse" id="headerDesiderata")
+            ul(class="nav navbar-nav")
+                li
+                    div(class="username yesDisplayTablet yesDisplayTel" style="float:left;color: #fff;width:100%;padding-left:10px; display: none")
+                        |{{user.loginId}}
+                li
+                    div(class="cartNavbar" ui-sref="cart" ng-show="emptyCart == false")
+                        i(class="fa fa-2x fa-shopping-cart")
+                li
+                    div(class="title")
+                        a(ui-sref="help" class="elementInCollapseNavbar") Assistenza
+                    div(class="active")
+                        div(class="triangle")
+                li
+                    div(class="title")
+                        a(ui-sref="profile" class="elementInCollapseNavbar") Profilo
+                li(id="categoryInMenu")
+                    div(class="title")
+                        a(ui-sref="collection" class="elementInCollapseNavbar") Catalogo generale
+                li
+                    div(class="title")
+                        a(ui-sref="dashboard" class="elementInCollapseNavbar") La mia libreria
+                li
+                    div(class="title")
+                        a(ui-sref="logout" class="elementInCollapseNavbar") Esci
+    div
+        div(class="logo noDisplayTel noDisplayTablet")
+            img(src="img/desiderata-library-logo.png")
+div(class="row help")
+    div(class="col-xs-12")
+        div(class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2")
+            div(id="titleHelp")
+                |Richiesta di assistenza
+    div(class="col-xs-12 col-sm-12 col-md-12 containerHelp" style="text-align: center;" ng-if="okFlag")
+        i(class="fa fa-5x fa-check")
+        div(style="font-size: 23px; margin-top: 30px;")
+            |La sua richiesta è stata inoltrata al nostro supporto tecnico.
+        div(class="col-xs-12 confirmHelp")
+            input(type="button" id="submit" value="Torna alla libreria" style="max-width: 180px !important; padding: 5px 15px; margin-left: 0px !important;" ng-click="goToLibrary()")
+    form(ng-submit="helpSubmit()" ng-if="!okFlag")
+        div(class="col-xs-12 col-sm-12 col-md-12 containerHelp")
+            .col-xs-8.col-xs-offset-2(ng-if='errorFlag')
+                .alert.alert-danger
+                    strong Attenzione!
+                    | {{errorMsg}}.
+            .col-xs-8.col-xs-offset-2(ng-if='okFlag')
+                .alert.alert-success
+                    p {{okMsg}}.
+            div(class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2")
+                div(class="col-xs-12 col-sm-6 col-md-6 form-group inputHelp")
+                    label
+                        |Nome
+                    input(type="text" placeholder="Inserisci il tuo nome" class="form-control" ng-model="help.firstName")
+                div(class="col-xs-12 col-sm-6 col-md-6 form-group inputHelp")
+                    label
+                        |Cognome
+                    input(type="text" placeholder="Inserisci il tuo cognome" class="form-control" ng-model="help.lastName")
+                div(class="col-xs-12 col-sm-6 col-md-6 form-group inputHelp")
+                    label
+                        |Email *
+                    input(type="email" placeholder="Inserisci la tua mail" class="form-control" ng-model="help.email")
+                div(id ="titleBook" class="col-xs-12 col-sm-6 col-md-6 form-group inputHelp")
+                    label
+                        |Titolo libro *
+                    input(type="text" placeholder="Inserisci il titolo del libro" class="form-control" ng-model="help.titleBook")
+                div(class="col-xs-12 col-sm-12 col-md-12 form-group inputHelp")
+                    label
+                        |Descrizione richiesta di intervento *
+                    textarea(class="form-control description" placeholder="Inserisci una descrizione del problema" ng-model="help.descriptionHelp")
+        div(class="col-xs-12 confirmHelp")
+            a(ui-sref="dashboard" class="btn btn-default" id="cancel") Annulla
+            input(class="btn btn-default" type="submit" id="submit" value="Conferma")

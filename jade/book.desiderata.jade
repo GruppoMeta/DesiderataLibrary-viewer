@@ -1,0 +1,60 @@
+div(class="title") Desiderata Book
+div(ng-show="readingOffline")
+    div(class="row offlineError")
+        |Questa funzionalità è disponibile solo in modalità online.
+div(style="" ng-show="notCreatingNewDesiderata && !readingOffline")
+    div(class="row desiderataItem" ng-repeat="obj in $root.desiderataList" )
+        div(class="bodyItem" )
+            div( class=" titleItem") {{obj.title}}
+            div( class=" textItem") Il desiderata è composto da {{obj.count}} testi
+            div( class=" menu-control")
+                a(class="" ui-sref="bookDes({idBook:{{obj.id}} , idPar : 0})" ng-click="") Leggi
+                a(class="noDisplayTablet" ng-click="modDesiderata(obj.id)") Modifica
+                a(class="last noDisplayTablet" ng-click="openCancelModal(obj)") Elimina
+            div( class=" menu-control" )
+                a(class="last"  ng-click="addThisTextToDes( obj.id )") 
+                  |Aggiungi il testo a questa desiderata
+        //div(class="footerItem")
+            //div(class="time") 40 minuti fa
+div(ng-show="!notCreatingNewDesiderata")
+    h5
+        |Modifica
+    input(type="text" id="addNewTitle" placeholder="Titolo desiderata" ng-model="newtitle" class="form-control" required)
+    div(class="row" id="sortable")
+        div(class="col-md-12 bookItem" ng-repeat="obj in $root.chosenText ")
+            div(class="left-maniglia")
+            div(class="right-maniglia")
+            h5(class="bookTitle")
+                |{{obj.title}}
+            i(class="fa fa-check-square" style="color:green; margin-top: -25px; float:right" ng-show="{{obj.inLibrary}}")
+            i(class="fa fa-usd" style="color:#FFBF00; margin-top: -25px; float:right" ng-show="{{!obj.inLibrary}}")
+            h5(class="bookParagraph")
+                |{{obj.subtitle}}
+            p(class="initialContentBook")
+                span {{obj.preview}}
+            a(ng-click="dropText($index)" style="cursor:pointer" class="last-right")
+                |Elimina
+            a(ng-show="obj.inLibrary" style="cursor:pointer" ng-click="openReadingModal(obj)")
+                |Leggi
+            a(ng-show="!obj.inLibrary" style="cursor:pointer" ng-click="addToCart(obj)")
+                |Acquista
+            //a(ng-show="!obj.inLibrary" style="cursor:pointer")
+                //|Sblocca
+//div(ng-show="addingText" style="position:absolute;left:-500px;width:500px;background-color:red;height:100%")
+//<dir-pagination-controls ng-show="notCreatingNewDesiderata" style="position:fixed; bottom:100px"></dir-pagination-controls>
+div(class="footerButton" ng-show="notCreatingNewDesiderata")
+    button( ng-click="creatingNew()" class="confirm btn btn-defualt noDisplayTablet noDisplayTel yesDisplayPc" style="position:fixed;bottom:10px; width:220px")
+        |Crea nuova desiderata
+div(class="footerButton" ng-show="!notCreatingNewDesiderata && !$root.addingText")
+    button( ng-click="addNewText()" id="addNewTextBut" class="confirm btn btn-defualt" style="position:fixed;bottom:50px; width:220px")
+        |Aggiungi altro testo
+    button( ng-click="addThisText()" id="addThisTextBut" class="confirm btn btn-defualt" style="position:fixed;bottom:90px; width:220px")
+        |Aggiungi questo testo
+div(class="footerButton" ng-show="!notCreatingNewDesiderata")
+    row( style="")
+        div(class="col-md-6")
+            button( style="width:100px;right: 134px;bottom: 10px;position: fixed;" ng-click="resetForms()" class="cancel btn btn-defualt" )
+                |Annulla
+        div(class="col-md-6")
+            button( style="right: 14px;width:100px;position: fixed;bottom: 10px;" ng-click="saveDesiderata()" class="confirm btn btn-defualt" )
+                | Conferma

@@ -1,0 +1,24 @@
+div(class="searchCont")
+  div(class="title") Ricerca nel libro
+  div(ng-show="readingOffline")
+      div(class="row offlineError")
+          |Questa funzionalità è disponibile solo in modalità online.
+  div(class="row similarItem" ng-show="searchBook.length && !readingOffline")
+      div(class="similarBody" ng-repeat="book in searchBook")
+          div(class="titleItem") {{book.title}}
+          div(class="titleParagraph") {{book.subtitle}}
+          div(class="textParagraph") {{book.preview | limitTo:30}}...
+          div(class="menu-control")
+              a( class="" ng-click="goToSearchResult(book.isPdf, book.publicationId, book.id)" style="float: left") Vai a
+              //a(class="last" ng-click="") Aggiungi a desiderata
+              div(class="dropdown dropdownSimilar")
+                  button(class="btn btn-default dropdown-toggle buttonSimilar" id="buttonSimilar{{$index}}" type="button" data-toggle="dropdown" ng-click="openDropdown($index)")
+                      |Aggiungi a desiderata
+                      span(class="caret")
+                  ul(class="dropdown-menu" id="{{$index}}" style="margin-left: -40px")
+                      li(ng-repeat="desiderata in desiderataList")
+                          a(ng-click="modifyDesiderata( desiderata.id, book.id, book.publicationId )")
+                              |{{desiderata.title}}
+  div(class="row similarItem" ng-show="!searchBook.length")
+      div(class="similarBody")
+          div(class="titleItem") Nessun risultato

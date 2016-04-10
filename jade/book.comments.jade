@@ -1,0 +1,12 @@
+div(class="title") Commenti
+div(class="row commentsItem" ng-repeat="existingComment in existingCommentsSidebar")
+    div(class="comment-header")
+        span(class="author") {{existingComment.comments[0].authorName}}
+        span(class="time") - {{ existingComment.comments[0].updated_at }}
+    //div(class="") {{ existingComment.comments[0].comment }}
+    div(class="")
+        input(type="text" id="inputComment{{existingComment.comments[0].id}}" class="form-control" value="{{ existingComment.comments[0].comment }}" disabled)
+    div(class="menu-control")
+        a(class="" ng-click="deleteComment(existingComment)") Elimina
+        a(class="" ng-click="goToComment(existingComment); $event.stopPropagation();") Vai a
+        a(class="last" id="modifyCommentSidebar{{existingComment.comments[0].id}}" ng-click="modifyComment(existingComment)") Modifica

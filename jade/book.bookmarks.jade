@@ -1,0 +1,29 @@
+div(class="bookmarksItem")
+    div(class="title")
+        |Preferiti
+    div(ng-show="readingOffline")
+        div(class="row offlineError")
+            |Questa funzionalità è disponibile solo in modalità online.
+    //div(class="menuView col-xs-12 col-md-12" ng-show="!readingOffline")
+        //div(class="col-xs-6 col-md-6 menuOption" ng-class="{active: isListBookmarks}" ng-click="showListBookmarks()")
+            //a(class="") Mostra elenco
+        //div(class="col-xs-6 col-md-6 menuOption" ng-class="{active: !isListBookmarks}" ng-click="showTreeBookmarks()")
+            //a(class="") Mostra albero
+    div(id="listBookmarks" ng-show="isListBookmarks && !readingOffline" style="margin-top: 0px !important")
+        div(class="inner-addon right-addon")
+            i(class="glyphicon glyphicon-search")
+            input(type="text" class="form-control" placeholder="Cerca" ng-model="search.paragraph")
+        div(id="singleBookmark" ng-click="goToPageFromSidebar( obj.isBook, obj.volumeId, obj.contentId )" ng-repeat="obj in $root.bookmarks | filter:filterRoot()")
+            div(id="paragraphBookmark" ng-if="obj.paragraph != ''" )
+                |{{obj.paragraph}}
+            div(id="paragraphBookmark" ng-if="obj.paragraph == ''" )
+                |Pagina {{obj.id}}
+            div
+                |{{obj.bookBookmark}}
+    div(id="treeBookmarks" ng-hide="isListBookmarks || readingOffline")
+        fancy-tree(tree-config="treeBookmarkConfig")
+    div(class="addFolderTree" ng-hide="isListBookmarks || readingOffline" ng-click="addFolderTree()")
+        |Aggiungi cartella
+        i(class="fa fa-folder-o" style="float: left; margin-right: 5px; margin-top: 3px;")
+    div(class="addFolderTree checkbox"  ng-show="isListBookmarks && !readingOffline")
+        <label><input type="checkbox" style="-webkit-appearance: checkbox" ng-model="allBookmarks" ng-change="showAllBookmarks()">Mostra preferiti di tutti i libri</label>

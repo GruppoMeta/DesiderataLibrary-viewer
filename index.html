@@ -1,0 +1,172 @@
+<html ng-app="desiderata">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <style type="text/css"></style>
+        <style>{{$root.customCss}}</style>
+        <title>Desiderata Library</title>
+
+        <link rel="stylesheet" href="css/vendor.css" />
+        <link rel="stylesheet" href="libs/libs.css" />
+        <link rel="stylesheet" href="css/app.css" />
+
+        <script src="config.js"></script>
+
+        <!-- inject:js -->
+        <!-- endinject -->
+        <script src="js/vendor.js"></script>
+        <script src="libs/libs.js"></script>
+        <script src="js/all.js"></script>
+        <script src="templates.min.js"></script>
+    </head>
+    <body>
+        <div ui-view>
+
+        </div>
+        <span us-spinner="{radius:20, width:5, length: 15, color: 'rgb(177, 32, 49)'}" spinner-key="spinner"></span>
+    </body>
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{title}}</h3>
+        </div>
+        <div class="modal-body">
+            {{body}}
+        </div>
+        <div class="modal-footer">
+            <button class="btn" type="button" ng-click="cancel()">Chiudi</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="myModalContentMap.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{title}}</h3>
+        </div>
+        <div class="modal-body">
+            {{body}}
+        </div>
+        <div class="modal-footer">
+            <button class="btn" type="button" ng-click="cancel()">Chiudi</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="myModalCancelContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Conferma Eliminazione</h3>
+        </div>
+        <div class="modal-body">
+            Vuoi veramente eliminare questo desiderataBook?
+        </div>
+        <div class="modal-footer">
+            <button class="btn" type="button" ng-click="cancel()">Annulla</button>
+            <button class="btn" type="button" ng-click="removeDesiderata()">Conferma</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="myModalNoConnection.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Errore</h3>
+        </div>
+        <div class="modal-body">
+            Attiva la connessione per poter accedere al contenuto desiderato.
+        </div>
+        <div class="modal-footer">
+            <button class="btn" type="button" ng-click="cancel()">Chiudi</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="openErrorZipModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Errore</h3>
+        </div>
+        <div class="modal-body">
+            Errore nello scaricamento del contenuto.
+        </div>
+        <div class="modal-footer">
+            <button class="btn" type="button" ng-click="cancel()">Chiudi</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="myModalConfirmContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Conferma aggiunta testo</h3>
+        </div>
+        <div class="modal-body" ng-show="!finished">
+            Vuoi aggiungere questo testo alla desiderata {{titleDes}}?
+        </div>
+        <div class="modal-body" ng-show="finished && !error">
+            Testo aggiunto correttamente
+        </div>
+        <div class="modal-body" ng-show="finished && error">
+            Si è verificato un errore
+        </div>
+        <div class="modal-footer" ng-show="!finished">
+            <button class="btn" type="button" ng-click="cancel()">Annulla</button>
+            <button class="btn" type="button" ng-click="addTextToDes()">Conferma</button>
+        </div>
+        <div class="modal-footer" ng-show="finished">
+            <button class="btn" type="button" ng-click="cancel()">Chiudi</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="finalizzaAcquisti.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Conferma acquisti</h3>
+        </div>
+        <div class="modal-body">
+            Nel carrello sono presenti alcune pubblicazioni vuoi procedere con l'acquisto?
+        </div>
+        <div class="modal-footer">
+            <button class="btn" type="button" ng-click="cancel()">Annulla</button>
+            <button class="btn" type="button" ng-click="goToFinalize()">Conferma</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="imgHotSpot.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{title}}</h3>
+            <button class="btn" type="button" ng-click="cancel()">Chiudi</button>
+        </div>
+        <div class="modal-body">
+            <img style="display: block; margin:auto" src="{{image}}">
+        </div>
+        <div class="modal-footer">
+        </div>
+    </script>
+    <script type="text/ng-template" id="videoHotSpot.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{title}}</h3>
+            <button class="btn" type="button" ng-click="cancel()">Chiudi</button>
+        </div>
+        <div class="modal-body">
+            <video height="240" width="320" controls style="display:block;margin:auto">
+                <source src="{{video}}" type="video/mp4"></source>
+                <source src="{{video}}" type="video/ogg"></source>
+            </video>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </script>
+    <script type="text/ng-template" id="audioHotSpot.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{title}}</h3>
+            <button class="btn" type="button" ng-click="cancel()">Chiudi</button>
+        </div>
+        <div class="modal-body">
+            <audio controls style="display:block;margin:auto">
+                <source src="{{audio}}" type="audio/mpeg"></source>
+                <source src="{{audio}}" type="audio/ogg"></source>
+            </audio>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </script>
+    <script type="text/ng-template" id="mySettingsModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Impostazioni</h3>
+        </div>
+        <div class="modal-body">
+            <div style="padding-bottom: 20px">Cosa vuoi fare del download di questo libro?</div>
+            <div class="col-xs-10 col-xs-offset-1">
+              <button class="btn btn-group confirm" type="button" ng-click="delete()">Elimina</button>
+              <button class="btn btn-group confirm" type="button" ng-click="refresh()">Riscarica</button>
+            </div>
+        </div>
+        <div class="modal-footer">
+             <button class="btn" type="button" ng-click="cancel()">Chiudi</button>
+        </div>
+    </script>
+</html>

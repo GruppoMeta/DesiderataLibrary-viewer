@@ -1,0 +1,159 @@
+header
+    nav(class="navbar navbar-default")
+        span(style="color:#fff;position:absolute;top:15px;left:250px"  class="yesDisplayPc noDisplayTel noDisplayTablet")
+            |{{user.loginId}}
+        div(class="navbar-header")
+            button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#headerDesiderata")
+                span(class="sr-only")
+                    |Toggle navigation
+                span(class="icon-bar")
+                span(class="icon-bar")
+                span(class="icon-bar")
+            div(class="navbar-brand noDisplayPc yesDisplayTel yesDisplayTablet")
+                |Catalogo
+        div(class="fluid collapse navbar-collapse" id="headerDesiderata")
+            ul(class="nav navbar-nav")
+                li
+                    div(class="username yesDisplayTablet yesDisplayTel" style="float:left;color: #fff;width:100%;padding-left:10px; display: none")
+                        |{{user.loginId}}
+                li
+                    div(class="cartNavbar" ui-sref="cart" ng-show="emptyCart == false")
+                        i(class="fa fa-2x fa-shopping-cart")
+                li
+                    div(class="title")
+                        a(ui-sref="help" class="elementInCollapseNavbar") Assistenza
+                li
+                    div(class="title")
+                        a(ui-sref="profile" class="elementInCollapseNavbar") Profilo
+                li(id="categoryInMenu")
+                    div(class="title")
+                        a(ui-sref="collection" class="elementInCollapseNavbar") Catalogo generale
+                    div(class="active")
+                        div(class="triangle")
+                li
+                    div(class="title")
+                        a(ui-sref="dashboard" class="elementInCollapseNavbar") La mia libreria
+                li
+                    div(class="title")
+                        a(ui-sref="logout" class="elementInCollapseNavbar") Esci
+    div
+        div(class="logo noDisplayTel noDisplayTablet")
+            img(src="img/desiderata-library-logo.png")
+
+div(class="options")
+    div
+          div(class="col-md-offset-2 col-md-8")
+              div(class="form-group")
+                  div(class="row")
+                  div(class="col-md-4")
+                      div(class="inner-addon right-addon")
+                          i(class="glyphicon glyphicon-search")
+                          input(type="text" class="form-control" placeholder="Cerca titolo" ng-model="search.title" ng-click="predicateSort = 'title'")
+                  div(class="col-md-4")
+                      ui-select(theme="select2" multiple ng-model="search.author" tagging="" on-select="" tagging-label=""  )
+                          ui-select-match(placeholder="Cerca autore" ng-click="predicateSort = 'author'") {{$item.value}}
+                          ui-select-choices( refresh="" refresh-delay="" repeat="elem in authors | filter:$select.search") {{elem.value}}
+                  div(class="col-md-4")
+                      ui-select(theme="select2" single ng-model="search.publisher" search-enabled="false" tagging="" on-select="" tagging-label="")
+                        ui-select-match(placeholder="Scegli editore") {{$select.selected.value}}
+                        ui-select-choices(refresh="" refresh-delay="" repeat="elem in publishers" ui-disable-choice="elem.key == $select.selected.key || (!$select.selected && elem.key == '')") {{elem.value}}
+          div(class="col-md-2")
+                i(class="fa fa-sort-alpha-asc fa-2x" style="color:#b12031;margin:5px;cursor:pointer;" ng-click="reverseSort = false; predicate = predicateSort")
+                i(class="fa fa-sort-alpha-desc fa-2x" style="color:#b12031;margin:5px;cursor:pointer;" ng-click="reverseSort = true; predicate = predicateSort")
+
+div(class="col-md-12 collection")
+    //div(class="col-md-12 containerTitleCollection")
+        //div(id="titleCategories")
+                //|Categorie
+    //div(class="col-md-3")
+        //div(class="categories")
+            //div(class="col-md-12 category")
+                //i(class="fa fa-2x fa-angle-right")
+                //p
+                    //|Tutte
+            //div(class="col-md-12 category")
+                //i(class="fa fa-2x fa-angle-right")
+                //p
+                    //|Biografie
+            //div(class="col-md-12 category")
+                //i(class="fa fa-2x fa-angle-right")
+                //p
+                    //|Fantascienza e fantasy
+    div(class="container")
+        div(id="listCollectionBook" ng-if="listCollectionBook == true")
+            div(class="col-md-8 col-md-offset-2")
+                div(popover-container="closePopoverUnlockCode()" id="unlockCode" style="margin: 0 auto; width: 220px; margin-bottom: 20px;")
+                            div(popover-template="'tagPopoverUnlockCode.html'" class="cursorRightIcon" popover-placement="bottom" popover-is-open="$parent.toggleTaggingPopoverUnlockCode")
+                                i(class="fa fa-lock" style="margin-right: 5px;")
+                                |Utilizza un codice di sblocco
+                script(type="text/ng-template" id="tagPopoverUnlockCode.html")
+                            div(id="popoverUnlock")
+                                div(id="titleUnlock")
+                                    |Digita il codice di sblocco
+                                form
+                                    div(class="form-group")
+                                        input(type="text" class="form-control" placeholder="Codice" ng-model="codeUnlock" required)
+                                    input(type="submit" id="submit" value="Conferma" ng-click="unlockWithCode(codeUnlock)")
+
+            div(class="collectionBook" dir-paginate="obj in catalog | filter:customFilter() | orderBy: predicate : reverseSort | itemsPerPage : 15")
+                div(class="fav")
+                    img(ng-src="{{obj.coverBig}}")
+                div(class="informationsCollectionBook")
+                    div(class="title")
+                        |{{obj.title}}
+                    div(class="author")
+                        |{{obj.author[0]}}
+                    div(class="publisher")
+                        |{{obj.publisher}}
+                    div(class="price")
+                        |{{obj.price}} €
+                div(class="cart")
+                    i(class="fa" ng-class="{'fa-file-pdf-o': '{{obj.type}}' == 'PublicationPdf', 'fa-book': '{{obj.type}}' == 'Publication' }" style="float:left; margin-top: 5px; color: #333; cursor: initial")
+                    a(ng-click="readObj(obj)")
+                        i(class="fa fa-2x" ng-class="{'fa-shopping-cart': '{{obj.inLibrary}}' == 'false' && '{{obj.isFree}}' == 'false', 'fa-book': '{{obj.inLibrary}}' == 'true', 'fa-plus': '{{obj.isFree}}' == 'true' && '{{obj.inLibrary}}' == 'false'}")
+        div(class="col-xs-12")
+            <dir-pagination-controls ng-if="listCollectionBook == true"></dir-pagination-controls>
+        div(id="singleCollectionBook" ng-if="listCollectionBook == false")
+            div(class="col-md-4")
+                div(class="imageSingleCollectionBook")
+                    img(ng-src="{{singleObj.coverBig}}")
+            div(class="col-md-8 descriptionSingleCollectionBook")
+                div(class="col-md-12")
+                    div
+                        i(class="fa" ng-class="{'fa-file-pdf-o': '{{singleObj.type}}' == 'PublicationPdf', 'fa-book': '{{singleObj.type}}' == 'Publication' }" style="margin-top: 5px; color: #333; cursor: initial")
+                    div(id="titleSingleColl")
+                        |{{singleObj.title}}
+                    div(id="authorSingleColl")
+                        |{{singleObj.author}}
+                    div(id="containerCartSingleColl")
+                        div(id="price")
+                            |{{singleObj.price}} €
+                    div(id="containerBuySingleColl")
+                        div(id="buy" ng-click="addToCart(singleObj)")
+                            i(class="fa fa-shopping-cart")
+                            |Acquista
+                div(class="informations col-md-12")
+                    div
+                        p(class="informationsSingleColl")
+                            |Editore:
+                        p
+                            |{{singleObj.publisher}}
+                        p(class="informationsSingleColl")
+                            |Data di pubblicazione:
+                        p
+                            |Anno
+                        p(class="informationsSingleColl")
+                            |Collana:
+                        p
+                            |Collana
+                        p(class="informationsSingleColl")
+                            |Tipologia:
+                        p
+                            |Tipologia
+                div(class="description col-md-12")
+                    p(id="titleDescription")
+                        |Descrizione:
+                    p
+                        |Descrizone
+                div(class="returnToList col-md-12")
+                    input(type="button" value="Torna al Catalogo" ng-click="goToListCollectionBook()")

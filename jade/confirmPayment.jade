@@ -1,0 +1,47 @@
+header
+    nav(class="navbar navbar-default")
+        span(style="color:#fff;position:absolute;top:15px;left:250px"  class="yesDisplayPc noDisplayTel noDisplayTablet")
+            |{{user.username}}
+        div(class="navbar-header")
+            button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#headerDesiderata")
+                span(class="sr-only")
+                    |Toggle navigation
+                span(class="icon-bar")
+                span(class="icon-bar")
+                span(class="icon-bar")
+        div(class="fluid collapse navbar-collapse" id="headerDesiderata")
+            ul(class="nav navbar-nav")
+                li
+                    div(class="username yesDisplayTablet yesDisplayTel" style="float:left;color: #fff;width:100%;padding-left:10px; display: none")
+                        |{{user.username}}
+                li
+                    div(class="cartNavbar" ui-sref="cart" ng-show="emptyCart == false")
+                        i(class="fa fa-2x fa-shopping-cart")
+                li
+                    div(class="title")
+                        a(ui-sref="help" class="elementInCollapseNavbar") Assistenza
+                li
+                    div(class="title")
+                        a(ui-sref="profile" class="elementInCollapseNavbar") Profilo
+                li(id="categoryInMenu")
+                    div(class="title")
+                        a(ui-sref="collection" class="elementInCollapseNavbar") Catalogo generale
+                li
+                    div(class="title")
+                        a(ui-sref="dashboard" class="elementInCollapseNavbar") La mia libreria
+                li
+                    div(class="title")
+                        a(ui-sref="logout" class="elementInCollapseNavbar") Esci
+    div
+        div(class="logo noDisplay")
+            img(src="img/desiderata-library-logo.png")
+div(class="col-md-12 confirmPayment")
+    div(class="col-md-8 col-md-offset-2")
+        div(class="containerTitleConfirmPayment" class="col-md-12")
+            div(id="titlePayment")
+                |Conferma pagamento
+    div(class="col-md-12" class="containerConfirmPayment")
+        div(class="col-md-4 col-md-offset-4")
+            |Il tuo ordine è avvenuto con successo. Ti verrà inviato il riepilogo per posta elettronica e un link per tenere traccia della consegna.
+    div(class="col-md-12" style="margin-top: 80px; text-align: center")
+        input(class="btn btn-default goToLibrary" type="button" value="Vai alla libreria" ng-click="goToLibrary()")
